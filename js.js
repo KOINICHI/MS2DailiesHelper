@@ -82,7 +82,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 					$scope.Quests[i].status = 'ongoing';
 					setCookie(id, 'ongoing', 365);
 				}
-				if ($scope.Quests[i].status == 'ongoing') {
+				else if ($scope.Quests[i].status == 'ongoing') {
 					$scope.Quests[i].status = 'cleared';
 					setCookie(id, 'notstarted', 365);
 				}

@@ -4,6 +4,7 @@
 <script src="./cookies.js"></script>
 <script src="./js.js"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
+<title> 메이플스토리2 일일 퀘스트 도우미 </title>
 
 <body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl">
 <div id='nav'>
@@ -16,12 +17,24 @@
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <li class='my-quest-list-item' ng-repeat="x in Quests | clearFilter" ng-click="clearQuest($event)">
+        <li class='my-quest-list-item' ng-repeat="x in filteredQuests = (Quests | clearFilter)" ng-click="clearQuest($event)">
             <a class="{{x.status}}" id="{{x.id}}">
                 {{x.desc}} <br /> {{x.map}}
             </a>
         </li>
     </ul>
+    <p ng-hide="filteredQuests.length">
+        왼쪽의 리스트에서 퀘스트를 클릭하면 오른쪽에 표시됩니다. <br />
+        퀘스트를 완료했다면 상자를 클릭해 취소선을 그을 수 있습니다. <br />
+        다시 클릭하면 완료한 퀘스트를 진행 중으로 되돌릴 수 있습니다. <br />
+        완료한 퀘스트는 새로고침하거나 다음에 접속할 때까지 사라지지 않습니다. <br />
+        <br />
+        이 페지는 쿠키를 이용합니다. <br />
+        비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />
+        이 메시지는 진행중인 퀘스트가 없을 경우에만 나타납니다 :D<br />
+        <br />
+        - 치즈모치 -  <br />
+    </p>
 </div>
 </body>
 </html>

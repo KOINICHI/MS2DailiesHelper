@@ -16,7 +16,9 @@ body {
 
 #main {
     float:right;
-    width: 70%;
+    width: 65%;
+    
+    margin: 30px;
 }
 
 .search {
@@ -50,4 +52,10 @@ body {
 }
 .ongoing {
     text-decoration: bold;
+}
+.ongoing:odd {
+    background-color: #111111;
+}
+.ongoing:even {
+    background-color: #000000;
 }
