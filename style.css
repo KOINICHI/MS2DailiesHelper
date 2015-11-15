@@ -54,10 +54,8 @@ li:hover {
     list-style: none;
 }
 .my-quest-list-item {
-    padding: 10px;
-    cursor: pointer; 
-    
-    height: 100px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .cleared {
