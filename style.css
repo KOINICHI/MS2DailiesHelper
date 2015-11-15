@@ -1,0 +1,53 @@
+﻿* {
+    font-size: 12pt;
+    font-family: '맑은 고딕', 'Malgun Gothic';
+}
+
+body {
+    height: 100%;
+}
+
+#nav {
+    position: fixed;
+    width: 30%;
+    height: 95%;
+    overflow: hidden;
+}
+
+#main {
+    float:right;
+    width: 70%;
+}
+
+.search {
+    padding: 10px;
+    margin: 10px;
+}
+
+.all-quest {
+    padding: 10px;
+    margin: 10px;
+    list-style: none;
+    overflow-y: scroll;
+    
+    height: 85%;
+}
+.quest-list-item {
+    margin-top: 5px;
+    cursor: pointer; 
+}
+.my-quest-list-item {
+    margin-top: 5px;
+    cursor: pointer; 
+}
+
+.my-quest {
+    list-style: none;
+}
+
+.cleared {
+    text-decoration: line-through;
+}
+.ongoing {
+    text-decoration: bold;
+}

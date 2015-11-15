@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<script src="./angular.min.js"></script>
+<script src="./cookies.js"></script>
+<script src="./js.js"></script>
+<link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
+
+<body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl">
+<div id='nav'>
+    <div class='search'> <input type="textbox" ng-model="filtertext" placeholder="검색" style="width:100%" value=""/> </div>
+    <ul class='all-quest'>
+        <li class='quest-list-item' ng-repeat="x in Quests | listFilter:filtertext" ng-click="startQuest($event)">
+            <a id="{{x.id}}">{{x.desc}}</a>
+        </li>
+    </ul>
+</div>
+<div id='main'>
+    <ul class='my-quest'>
+        <li class='my-quest-list-item' ng-repeat="x in Quests | clearFilter" ng-click="clearQuest($event)">
+            <a class="{{x.status}}" id="{{x.id}}">
+                {{x.desc}} <br /> {{x.map}}
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+
