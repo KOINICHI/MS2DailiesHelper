@@ -10,17 +10,15 @@
 <div id='nav'>
     <div class='search'> <input type="textbox" ng-model="filtertext" placeholder="검색" style="width:100%" value=""/> </div>
     <ul class='all-quest'>
-        <li class='quest-list-item' ng-repeat="x in Quests | listFilter:filtertext" ng-click="startQuest($event)">
-            <a id="{{x.id}}">{{x.desc}}</a>
+        <li name="{{x.id}}" class='all-quest-list-item' ng-repeat="x in Quests | listFilter:filtertext" ng-click="startQuest($event)">
+            <span name="{{x.id}}">{{x.desc}}</span>
         </li>
     </ul>
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <li class='my-quest-list-item' ng-repeat="x in filteredQuests = (Quests | clearFilter)" ng-click="clearQuest($event)">
-            <a class="{{x.status}}" id="{{x.id}}">
-                {{x.desc}} <br /> {{x.map}}
-            </a>
+        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in filteredQuests = (Quests | clearFilter)" ng-click="clearQuest($event)">
+            <span name="{{x.id}}">{{x.desc}} <br /> {{x.map}}</span>
         </li>
     </ul>
     <p ng-hide="filteredQuests.length">

@@ -21,6 +21,18 @@ body {
     margin: 30px;
 }
 
+
+li:nth-child(odd) {
+    background-color: #fafafa;
+}
+li:nth-child(even) {
+    background-color: #ffffff;
+}
+
+li:hover {
+    background-color: #f3f3f3;
+}
+
 .search {
     padding: 10px;
     margin: 10px;
@@ -34,17 +46,18 @@ body {
     
     height: 85%;
 }
-.quest-list-item {
+.all-quest-list-item {
     margin-top: 5px;
     cursor: pointer; 
 }
-.my-quest-list-item {
-    margin-top: 5px;
-    cursor: pointer; 
-}
-
 .my-quest {
     list-style: none;
+}
+.my-quest-list-item {
+    padding: 10px;
+    cursor: pointer; 
+    
+    height: 100px;
 }
 
 .cleared {
@@ -52,10 +65,4 @@ body {
 }
 .ongoing {
     text-decoration: bold;
-}
-.ongoing:odd {
-    background-color: #111111;
-}
-.ongoing:even {
-    background-color: #000000;
 }

@@ -63,8 +63,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	}
 	
 	$scope.startQuest = function(e) {
-		console.log(e);
-		var id = parseInt(e.target.id)
+		e.stopPropagation();
+		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
 				$scope.Quests[i].status = 'ongoing';
@@ -74,8 +74,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 		}
 	}
 	$scope.clearQuest = function(e) {
-		console.log(e);
-		var id = parseInt(e.srcElement.id)
+		e.stopPropagation();
+		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
 				if ($scope.Quests[i].status == 'cleared') {
