@@ -18,8 +18,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.HousingMap = null;
 	$scope.Using = ['슬라임 찌꺼기 먹어보기', '황금사과 먹어보기','달콤한 나뭇잎 먹어보기','쉐도우 DNA 먹어보기','빠빠 가루 먹어보기','빠빠 열매 따기/구해오기','뚜삐뚜 젤리 먹어보기','요정수 먹어보기','이블아이의 눈 먹어보기'];
 	$scope.UsingMap = ['초록 숲 오솔길','나무꾼의 언덕','엘보의 통나무 굴','쉐도우 게이트','바로타 무역항','카브리엄 분지','우드버리','흰 바위산','개미굴 광장'];
-	$scope.Storybook = ['인테리어 Vol. 1/2/3', '튜닝 모터스 : 지프 에디션','블록 골렘 카탈로그','Ms DECOR : 베드 컬렉션','인테리어 Vol. 1/2/3','Beauty Dr.Jenco & Dicson'];
-	$scope.StorybookMap = ['트라이아-홍보 사원 고든','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관'];
+	$scope.Storybook = ['튜닝 모터스 : 지프 에디션','블록 골렘 카탈로그','Ms DECOR : 베드 컬렉션','인테리어 Vol. 1/2/3','Beauty Dr.Jenco & Dicson', '헤어스타일 Vol. 1'];
+	$scope.StorybookMap = ['트라이아-홍보 사원 고든','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관', '로제타 뷰티살롱-제인'];
 	
 	$scope.LifeOthers = ['트로이 여관에 앉아 있기'];
 	$scope.LifeOthersMap = ['트라이아'];
