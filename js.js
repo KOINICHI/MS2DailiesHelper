@@ -13,7 +13,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.BattleObjects = ['불드럼', '광산카트', '오크통', '타이어', '쓰레기통', '가스통', '폐기물드럼통', '토템(던지기)', '독가루포대', '다이나마이트', '폭탄', '닭장', '계란', '병박스', '횃불', '무지개똥', '상한무지개똥', '표지판', '신호등', '전봇대', '토템(휘두르기)', '파이프', '페리온집', '커닝버스', '커닝폰부스', '커닝트럭', '빙하집', '샤워실', '화장실', 'EMP 폭탄', '태엽 폭탄'];
 	$scope.BattleObjectsMap = null;
 	
-	$scope.Housing = ['블루/핑크 스포트라이트, 반짝 미러볼 작동하기','다이나믹 러닝머신 체험하기', '럭셔리 새면대에서 세수하기', '디럭스 샤워 부스에서 샤워하기', '낚시 의자에 앉아보기', '쇼케이스 냉장고 살펴보기', '주황 콤팩트 냉장고 살펴보기', '하얀 콤팩트 냉장고 살펴보기', '하얀 미니 냉장고 살펴보기', '레트로 TV 시청하기', '블랙 슬림 TV 시청하기', '화이트 슬림 TV 시청하기', '야옹 캣타워에서 고양이와 놀기', '사이클론 실내 자전거 체험하기', '눈누비데 좌변기에서 볼 일 보기', '낚시 의자에 앉아보기'];
+	$scope.Housing = ['블루/핑크 스포트라이트, 반짝 미러볼 작동하기','다이나믹 러닝머신 체험하기', '럭셔리 새면대에서 세수하기', '디럭스 샤워 부스에서 샤워하기', '낚시 의자에 앉아보기', '쇼케이스 냉장고 살펴보기', '주황 콤팩트 냉장고 살펴보기', '하얀 콤팩트 냉장고 살펴보기', '하얀 미니 냉장고 살펴보기', '레트로 TV 시청하기', '블랙 슬림 TV 시청하기', '화이트 슬림 TV 시청하기', '야옹 캣타워에서 고양이와 놀기', '사이클론 실내 자전거 체험하기', '눈누비데 좌변기에서 볼 일 보기'];
 	$scope.HousingMap = null;
 	$scope.Using = ['슬라임 찌꺼기 먹어보기', '황금사과 먹어보기','달콤한 나뭇잎 먹어보기','쉐도우 DNA 먹어보기','빠빠 가루 먹어보기','빠빠 열매 따기/구해오기','뚜삐뚜 젤리 먹어보기','요정수 먹어보기','이블아이의 눈 먹어보기', '시약 샘플 먹어보기'];
 	$scope.UsingMap = ['초록 숲 오솔길','나무꾼의 언덕','엘보의 통나무 굴','쉐도우 게이트','바로타 무역항','카브리엄 분지','우드버리','흰 바위산','개미굴 광장','골두스 제약 공장'];
@@ -42,15 +42,15 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 			var desc = Key[i];
 			var map = Map == null ? "" : Map[i];
 			var id = type*10000 + i;
-			var status = 'notstarted';
+			var status = getCookie(id);
 			
 			if (type == 3) {
 			    var tail = desc.substring(desc.length-1).getTail();
 				desc += ((tail == 0 || tail == 8) ? "" : "으") + "로 ";
 			}
 			desc += $scope.Postfixes[type];
-			if (getCookie(id) == 'ongoing') {
-				status = 'ongoing';
+			if (status == 0) {
+				status = 'notstarted';
 			}
 			
 			$scope.Quests.push({
@@ -84,7 +84,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 				}
 				else if ($scope.Quests[i].status == 'ongoing') {
 					$scope.Quests[i].status = 'cleared';
-					setCookie(id, 'notstarted', 365);
+					setCookie(id, 'cleared', 365);
 				}
 				break;
 			}
@@ -100,7 +100,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 		    for (i=0; i<$scope.Quests.length; i++) {
                 if ($scope.Quests[i].status == 'ongoing') {
                     $scope.Quests[i].status = 'cleared';
-                    setCookie($scope.Quests[i].id, 'notstarted', 365);
+                    setCookie($scope.Quests[i].id, 'cleared', 365);
                 }
             }
             e.target.innerHTML = '모든 퀘스트 완료하기';
@@ -117,6 +117,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 		    for (i=0; i<$scope.Quests.length; i++) {
                 if ($scope.Quests[i].status == 'cleared') {
                     $scope.Quests[i].status = 'notstarted';
+                    setCookie($scope.Quests[i].id, 'notstarted', 365);
                 }
             }
             e.target.innerHTML = '클리어한 퀘스트 지우기';

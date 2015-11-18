@@ -2,7 +2,7 @@
 <html>
 <script src="./angular.min.js"></script>
 <script src="./cookies.js"></script>
-<script src="./js.js?4"></script>
+<script src="./js.js?5"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
@@ -18,15 +18,18 @@
 <div id='main'>
     <ul class='my-quest'>
         <div class='my-quest-control'>
-            <span class='my-quest-desc'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
-            <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
-            <button class='my-quest-button' ng-click="removeClearedQuests($event)">클리어한 퀘스트 지우기</button>
+            <span class='my-quest-desc float-left'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
+            <div class='float-right'>
+                <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
+                <button class='my-quest-button' ng-click="removeClearedQuests($event)">클리어한 퀘스트 지우기</button>
+            </div>
+            <div class='float-clear'> </div>
         </div>
         <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in myquestQuests = (Quests | myquestFilter)" ng-click="clearQuest($event)">
             <span name="{{x.id}}"><span ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
         </li>
     </ul>
-    <p ng-hide="myquestQuests.length" style="margin-left: 50px">
+    <p ng-hide="myquestQuests.length" class='my-quest-list-item' style="min-width:85%; margin-left: 50px">
         <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
         <br />
         준비 중 : 모든 퀘스트 맵 정보 추가, 추천 루트 소개 기능 추가<br />
@@ -34,7 +37,7 @@
         왼쪽의 리스트에서 퀘스트를 클릭하면 오른쪽에 표시됩니다. <br />
         퀘스트를 완료했다면 상자를 클릭해 취소선을 그을 수 있습니다. <br />
         다시 클릭하면 완료한 퀘스트를 진행 중으로 되돌릴 수 있습니다. <br />
-        완료한 퀘스트는 새로고침하거나 다음에 접속할 때까지 사라지지 않습니다. <br />
+        완료한 퀘스트는 직접 지우기 전까지는 사라지지 않습니다. <br />
         <br />
         이 페지는 쿠키를 이용합니다. <br />
         비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />

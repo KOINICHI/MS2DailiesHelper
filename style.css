@@ -24,6 +24,15 @@ body {
     margin: 40px 20px 0px 0px;
 }
 
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.float-clear {
+    clear: both;
+}
 
 
 .search {
@@ -58,12 +67,13 @@ body {
 }
 .my-quest {
     list-style: none;
+    margin: 50px 0px 0px 0px;
     height: 85%;
 }
 .my-quest-list-item {
     display: inline-block;
-    max-width: 200px;
-    max-height: 100px;
+    max-width: 20%;
+    max-height: 10%;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
@@ -74,12 +84,20 @@ body {
     border: #dddddd 2px solid;
 }
 .my-quest-desc {
+    position: relative;
+    top: 10px;
     font-size: 16pt;
 }
 .my-quest-control {
     display: block;
-    margin-bottom: 20px;
-    
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 30%;
+    height: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    vertical-align: middle;
 }
 .my-quest-button {
     margin-left: 5px;
