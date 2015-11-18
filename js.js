@@ -98,7 +98,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 		    for (i=0; i<$scope.Quests.length; i++) {
                 if ($scope.Quests[i].status == 'ongoing') {
                     $scope.Quests[i].status = 'cleared';
-                    setCookie(id, 'notstarted', 365);
+                    setCookie($scope.Quests[i].id, 'notstarted', 365);
                 }
             }
             e.target.innerHTML = '모든 퀘스트 완료하기';
