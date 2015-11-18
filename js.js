@@ -18,7 +18,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.Using = ['슬라임 찌꺼기 먹어보기', '황금사과 먹어보기','달콤한 나뭇잎 먹어보기','쉐도우 DNA 먹어보기','빠빠 가루 먹어보기','빠빠 열매 따기/구해오기','뚜삐뚜 젤리 먹어보기','요정수 먹어보기','이블아이의 눈 먹어보기', '시약 샘플 먹어보기'];
 	$scope.UsingMap = ['초록 숲 오솔길','나무꾼의 언덕','엘보의 통나무 굴','쉐도우 게이트','바로타 무역항','카브리엄 분지','우드버리','흰 바위산','개미굴 광장','골두스 제약 공장'];
 	$scope.Storybook = ['튜닝 모터스 : 지프 에디션','블록 골렘 카탈로그','Ms DECOR : 베드 컬렉션','인테리어 Vol. 1','Beauty Dr.Jenco & Dicson', '헤어스타일 Vol. 1','알리카르 감옥 브로슈어','인테리어 Vol. 2','인테리어 Vol. 3'];
-	$scope.StorybookMap = ['트라이아-홍보 사원 고든','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관', '로제타 뷰티살롱-제인', '알리카르 감옥-카론','트라이아 도서관','트라이아 도서관'];
+	$scope.StorybookMap = ['트라이아(홍보 사원 고든)','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관', '로제타 뷰티살롱(제인)', '알리카르 감옥(카론)','트라이아 도서관','트라이아 도서관'];
 	
 	$scope.LifeOthers = ['트로이 여관에 앉아 있기'];
 	$scope.LifeOthersMap = ['트라이아'];
@@ -26,7 +26,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.Actions = ['비행하기', '점프하기', '탈것 타고 이동하기', '달리기', '벽타고 이동하기', '기어가기', '로프에 매달려있기', '물속에 있기', '택시 이용하기', '비석을 때려 부활을 도와주기', '나무 상자 열어보기', '황금 보물 상자 열어보기', '알리카르 감옥의 쓰레기통 뒤지기', '사용하지 않는 장비 분해하기', '망원경 들여다보기', '잃어버린 기억의 숲/달빛누리 숲/바움나무/엘보의 통나무 굴 망원경 들여다보기', '커닝시티/실버스톤 브릿지/스티머 부르크 망원경 들여다보기', '잔디 위에 있기'];
 	$scope.ActionsMap = null;
 	$scope.Visiting = ['스페이스 번지 점프','무지개 슬라임 공장', '쿰바왕카의 보물', '때려때려 돈나무', '설눈이의 꿈', '쉐도우 월드', '파이널 서바이버'];
-	$scope.VisitingMap = ['','','','','','','짝수 시 35분에 퀸즈타운 (예: 2시 35분)'];
+	$scope.VisitingMap = ['','','','','','','짝수 시 35분(예: 2시 35분)에 퀸즈타운'];
 	
 	$scope.Postfixes = ['형 몬스터 처치', ' 처치', ' 클리어', ' 몬스터 공격', '', '', ' 구해오기', '', '', ' 입장하기'];
 	
@@ -65,6 +65,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.Quests.sort(UnicodeComparer);
 	
 	$scope.startQuest = function(e) {
+        e.stopPropagation();
 		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
@@ -75,6 +76,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 		}
 	}
 	$scope.clearQuest = function(e) {
+        e.stopPropagation();
 		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
@@ -175,6 +177,18 @@ Main.filter('clearedFilter', [function() {
 		var ret = [];
 		for (i=0; i<list.length; i++) {
 			if (list[i].status == 'cleared') {
+				ret.push(list[i]);
+			}
+		}
+		return ret;
+	};
+}]);
+
+Main.filter('notstartedFilter', [function() {
+	return function(list) {
+		var ret = [];
+		for (i=0; i<list.length; i++) {
+			if (list[i].status == 'notstarted') {
 				ret.push(list[i]);
 			}
 		}

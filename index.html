@@ -2,38 +2,37 @@
 <html>
 <script src="./angular.min.js"></script>
 <script src="./cookies.js"></script>
-<script src="./js.js?5"></script>
+<script src="./js.js?6"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
 <body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl">
-<div id='nav'>
-    <input type="search" class='search' ng-model="filtertext" placeholder="Filter" value=""/>
-    <ul class='all-quest'>
-        <li name="{{x.id}}" class='all-quest-list-item' ng-repeat="x in Quests | listFilter:filtertext" ng-click="startQuest($event)">
-            <span name="{{x.id}}">{{x.desc}}</span>
-        </li>
-    </ul>
+<div class='my-quest-control'>
+    <div class='float-left'>
+        <span class='my-quest-desc'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
+        <input type="search" class='search' ng-model="filtertext" placeholder="필터" value=""/>
+    </div>
+    <div class='float-right'>
+        <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
+        <button class='my-quest-button' ng-click="removeClearedQuests($event)">클리어한 퀘스트 지우기</button>
+    </div>
+    <div class='float-clear'> </div>
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <div class='my-quest-control'>
-            <span class='my-quest-desc float-left'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
-            <div class='float-right'>
-                <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
-                <button class='my-quest-button' ng-click="removeClearedQuests($event)">클리어한 퀘스트 지우기</button>
-            </div>
-            <div class='float-clear'> </div>
-        </div>
-        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in myquestQuests = (Quests | myquestFilter)" ng-click="clearQuest($event)">
-            <span name="{{x.id}}"><span ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
+        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
+            <span name="{{x.id}}"><span name="{{x.id}}" ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
+        </li>
+        <hr style="visibility:hidden; margin-bottom: 30px;" />
+        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
+            <span name="{{x.id}}"><span name="{{x.id}}" ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
         </li>
     </ul>
-    <p ng-hide="myquestQuests.length" class='my-quest-list-item' style="min-width:85%; margin-left: 50px">
+    <p class='my-quest-list-item ongoing' style="min-width:89%; margin: 50px;">
         <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
         <br />
         앞으로 할 일 :<br />
-        1. 리스트 UI더 깔끔하게<br />
+        1. 이 메시지 어떻게 좀 더 잘 보이게 하기... (_ _)<br />
         2. 몬스터/공격 오브젝트 맵 데이터 추가. 맵이 정말 많다보니 클릭해서 맵 리스트를 보여주는 방식으로 할 예정입니다.<br />
         3. 루트 추천 기능. 아마 머나먼 미래...<br />
         <br />
@@ -44,8 +43,6 @@
         <br />
         이 페지는 쿠키를 이용합니다. <br />
         비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />
-        <br />
-        이 메시지는 진행중인 퀘스트가 없을 경우에만 나타납니다 :D<br />
         <br />
         혹시 "모든 아이템이 갖춰져 있다!" 하시는 분들 중 <br />
         이곳에 집 광고를 올리고 싶으신 분이 계시면 '치즈모치' 로 편지 보내주세요! <br />

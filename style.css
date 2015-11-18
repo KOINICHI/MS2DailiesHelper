@@ -1,27 +1,18 @@
 ﻿* {
     font-size: 12pt;
     font-family: '맑은 고딕', 'Malgun Gothic';
-}
 
+    webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
 body {
     height: 100%;
 }
 
-#nav {
-    position: fixed;
-    margin: 40px 0px 0px 20px;
-    width: 25%;
-    height: 95%;
-    overflow: hidden;
-    resize: auto;
-}
-
 #main {
-    float:right;
-    width: 70%;
-    height: 95%;
-    
-    margin: 40px 20px 0px 0px;
+    margin: 100px auto;
 }
 
 .float-left {
@@ -35,14 +26,98 @@ body {
 }
 
 
+
+.my-quest-control {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 40px;
+    margin: 0px;
+    padding: 20px 40px 20px 40px;
+    background-color: #efefef;
+}
+.my-quest-desc {
+    display:inline-block;
+    float:left;
+    clear:left;
+    margin: 5px 10px 0px 10px;
+    font-size: 16pt;
+}
 .search {
-    margin: 0;
-    width: 100%;
-    height: 30px;
+    display:inline-block;
+    float: left;
+    margin: 0px 10px 0px 10px;
+    width: 200px;
+    height: 35px;
 }
 .search:hover {
     border: #cfcfcf 2px solid;
 }
+.my-quest-button {
+    margin-left: 5px;
+    border-radius: 3px;
+    border: #cccccc 2px solid;
+    background-color: #fcfcfc;
+    width: 180px;
+    height: 40px;
+}
+.my-quest-button:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.my-quest {
+    list-style: none;
+    margin: 50px 0px 0px 0px;
+    height: 85%;
+}
+.my-quest-list-item {
+    display: inline-block;
+    max-width: 20%;
+    max-height: 10%;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.cleared {
+    color: #000000;
+    text-decoration: line-through;
+    border: #999999 2px solid;
+}
+.cleared:hover {
+    border-color: #777777;
+}
+.ongoing {
+    color: #000000;
+    border: #999999 2px solid;
+}
+.ongoing:hover {
+    border-color: #777777;
+}
+.notstarted {
+    color: #999999;
+    border: #ececec 2px solid;
+}
+.notstarted:hover {
+    border-color: #cccccc;
+}
+
+
+
+
+
+
+/*
 .all-quest {
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
@@ -65,57 +140,4 @@ body {
 .all-quest-list-item:hover {
     background-color: #f3f3f3;
 }
-.my-quest {
-    list-style: none;
-    margin: 50px 0px 0px 0px;
-    height: 85%;
-}
-.my-quest-list-item {
-    display: inline-block;
-    max-width: 20%;
-    max-height: 10%;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    border: #eeeeee 2px solid;
-    border-radius: 5px;
-}
-.my-quest-list-item:hover {
-    border: #dddddd 2px solid;
-}
-.my-quest-desc {
-    position: relative;
-    top: 10px;
-    font-size: 16pt;
-}
-.my-quest-control {
-    display: block;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 30%;
-    height: 40px;
-    padding: 20px;
-    background-color: #ffffff;
-    vertical-align: middle;
-}
-.my-quest-button {
-    margin-left: 5px;
-    border-radius: 3px;
-    border: #ececec 2px solid;
-    background-color: #fcfcfc;
-    width: 180px;
-    height: 40px;
-}
-.my-quest-button:hover {
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-
-.cleared {
-    text-decoration: line-through;
-}
-.ongoing {
-    text-decoration: bold;
-}
+*/
