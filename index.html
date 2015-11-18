@@ -8,7 +8,7 @@
 
 <body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl">
 <div id='nav'>
-    <div class='search'> <input type="textbox" ng-model="filtertext" placeholder="검색" style="width:100%" value=""/> </div>
+    <input type="search" class='search' ng-model="filtertext" placeholder="Filter" value=""/>
     <ul class='all-quest'>
         <li name="{{x.id}}" class='all-quest-list-item' ng-repeat="x in Quests | listFilter:filtertext" ng-click="startQuest($event)">
             <span name="{{x.id}}">{{x.desc}}</span>
@@ -17,12 +17,15 @@
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <p ng-hide="!filteredQuests.length">현재 퀘스트 갯수 : {{filteredQuests.length}}개</p>
-        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in filteredQuests = (Quests | clearFilter)" ng-click="clearQuest($event)">
+        <div class='my-quest-control' ng-hide="!myquestQuests.length">
+            <span class='my-quest-len'> 진행중인 퀘스트 <b>{{(Quests | ongoingFilter).length}}개</b></span>
+            <button class='my-quest-clear-all' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
+        </div>
+        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in myquestQuests = (Quests | myquestFilter)" ng-click="clearQuest($event)">
             <span name="{{x.id}}">{{x.desc}} <br /> {{x.map}}</span>
         </li>
     </ul>
-    <p ng-hide="filteredQuests.length" style="margin: 30px">
+    <p ng-hide="myquestQuests.length" style="margin: 30px">
         <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
         <br />
         준비 중 : 모든 퀘스트 맵 정보 추가, 추천 루트 소개 기능 추가<br />
