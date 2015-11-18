@@ -17,16 +17,16 @@
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <div class='my-quest-control' ng-hide="!myquestQuests.length">
-            <span class='my-quest-len'> 진행중인 퀘스트 <b>{{(Quests | ongoingFilter).length}}개</b></span>
+        <div class='my-quest-control'>
+            <span class='my-quest-desc'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
             <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
             <button class='my-quest-button' ng-click="removeClearedQuests($event)">클리어한 퀘스트 지우기</button>
         </div>
         <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in myquestQuests = (Quests | myquestFilter)" ng-click="clearQuest($event)">
-            <span name="{{x.id}}">{{x.desc}} <br /> {{x.map}}</span>
+            <span name="{{x.id}}"><span ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
         </li>
     </ul>
-    <p ng-hide="myquestQuests.length" style="margin: 30px">
+    <p ng-hide="myquestQuests.length" style="margin-left: 50px">
         <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
         <br />
         준비 중 : 모든 퀘스트 맵 정보 추가, 추천 루트 소개 기능 추가<br />
