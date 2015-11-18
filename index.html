@@ -17,6 +17,7 @@
 </div>
 <div id='main'>
     <ul class='my-quest'>
+        <p ng-hide="!filteredQuests.length">현재 퀘스트 갯수 : {{filteredQuests.length}}개</p>
         <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in filteredQuests = (Quests | clearFilter)" ng-click="clearQuest($event)">
             <span name="{{x.id}}">{{x.desc}} <br /> {{x.map}}</span>
         </li>
