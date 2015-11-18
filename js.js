@@ -46,7 +46,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 			var status = 'notstarted';
 			
 			if (type == 3) {
-				desc += (desc.substring(desc.length-1).hasTail() ? "" : "으") + "로 ";
+				desc += (desc.substring(desc.length-1).hasTail() ? "으" : "") + "로 ";
 			}
 			desc += $scope.Postfixes[type];
 			if (getCookie(id) == 'ongoing') {
