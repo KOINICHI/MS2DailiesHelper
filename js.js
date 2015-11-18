@@ -4,7 +4,6 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.QuestNPC = ['알리야르','마요르','고다르'];
 	$scope.QuestCategory = ['전투', '생활', '모험'];
 	
-	
 	$scope.Monsters = ['기계','벌레','사물','식물','신수','악마','야수','언데드','요정','인간','정령'];
 	$scope.MonstersMap = null;
 	$scope.Bosses = ['깡패 바라하','부기콜리','경비대장 차우','데블린 치프','데블린 워리어','둔둔','에피','프랑케네뜨','자이언트 라바아이','자이언트 터틀','그리피나','그리폰','매드오네뜨','마크52 알파','머쉬맘','닉시','레버넌트 좀비','우르자','다크 지란트','마노','바람술사 라펭','소환술사 라툰','스텀피','우르판다','좀비머쉬맘','킹슬라임','레르노스','로로와 무무스','바야르 수문장','분노의 바포메트','알파 터틀','토토와 구구스','페카노스','냉혈한 바포메트','이카르 마드','트라우로스','나인캡 카파','대지의 라바나이트','우르스카','몬테 드 카를로','팬텀 디스트로이어','레르타'];
@@ -18,8 +17,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.HousingMap = null;
 	$scope.Using = ['슬라임 찌꺼기 먹어보기', '황금사과 먹어보기','달콤한 나뭇잎 먹어보기','쉐도우 DNA 먹어보기','빠빠 가루 먹어보기','빠빠 열매 따기/구해오기','뚜삐뚜 젤리 먹어보기','요정수 먹어보기','이블아이의 눈 먹어보기', '시약 샘플 먹어보기'];
 	$scope.UsingMap = ['초록 숲 오솔길','나무꾼의 언덕','엘보의 통나무 굴','쉐도우 게이트','바로타 무역항','카브리엄 분지','우드버리','흰 바위산','개미굴 광장','골두스 제약 공장'];
-	$scope.Storybook = ['튜닝 모터스 : 지프 에디션','블록 골렘 카탈로그','Ms DECOR : 베드 컬렉션','인테리어 Vol. 1/2/3','Beauty Dr.Jenco & Dicson', '헤어스타일 Vol. 1','알리카르 감옥 브로슈어'];
-	$scope.StorybookMap = ['트라이아-홍보 사원 고든','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관', '로제타 뷰티살롱-제인', '알리카르 감옥-카론'];
+	$scope.Storybook = ['튜닝 모터스 : 지프 에디션','블록 골렘 카탈로그','Ms DECOR : 베드 컬렉션','인테리어 Vol. 1','Beauty Dr.Jenco & Dicson', '헤어스타일 Vol. 1','알리카르 감옥 브로슈어','인테리어 Vol. 2','인테리어 Vol. 3'];
+	$scope.StorybookMap = ['트라이아-홍보 사원 고든','골두스 펜트 하우스','골두스 펜트 하우스','트라이아 도서관','트라이아 도서관', '로제타 뷰티살롱-제인', '알리카르 감옥-카론','트라이아 도서관','트라이아 도서관'];
 	
 	$scope.LifeOthers = ['트로이 여관에 앉아 있기'];
 	$scope.LifeOthersMap = ['트라이아'];
@@ -46,7 +45,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 			var status = 'notstarted';
 			
 			if (type == 3) {
-				desc += (desc.substring(desc.length-1).hasTail() ? "으" : "") + "로 ";
+			    var tail = desc.substring(desc.length-1).getTail();
+				desc += ((tail == 0 || tail == 8) ? "" : "으") + "로 ";
 			}
 			desc += $scope.Postfixes[type];
 			if (getCookie(id) == 'ongoing') {
@@ -54,13 +54,15 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 			}
 			
 			$scope.Quests.push({
-				type    : type ,
+			    key     : desc[0],
+				type    : type,
 				id      : id,
 				desc    : desc,
 				map     : map,
 				status  : status});
 		}
 	}
+	$scope.Quests.sort(UnicodeComparer);
 	
 	$scope.startQuest = function(e) {
 		var id = parseInt(e.target.attributes['name'].value)
@@ -104,6 +106,27 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
             e.target.innerHTML = '모든 퀘스트 완료하기';
         	$scope.confirmClearAll = true;
         }
+    }
+	$scope.confirmRemoveAll = true;
+    $scope.removeClearedQuests = function(e) {
+		if ($scope.confirmRemoveAll) {
+            e.currentTarget.innerHTML = '진짜로?';
+        	$scope.confirmRemoveAll = false;    
+        }
+        else {
+		    for (i=0; i<$scope.Quests.length; i++) {
+                if ($scope.Quests[i].status == 'cleared') {
+                    $scope.Quests[i].status = 'notstarted';
+                }
+            }
+            e.target.innerHTML = '클리어한 퀘스트 지우기';
+        	$scope.confirmRemoveAll = true;
+        }
+    }
+    
+    $scope.currentScreen = 0; // 0: Home, 1: Quest List
+    $scope.changeScreen = function(e) {
+        $scope.currentScreen = 1-$scope.currentScreen;
     }
 }]);
 
@@ -166,9 +189,20 @@ String.prototype.getHashCode = function() {
 	}
 	return hash ;
 }
-String.prototype.hasTail = function() {
-	return (this.charCodeAt(0)-44032) % 28 > 0;
+String.prototype.getTail = function() {
+	return (this.charCodeAt(0)-44032) % 28;
 }
+var UnicodeComparer = function(a, b) {
+    var l = Math.min(a.desc.length, b.desc.length);
+    for (i=0; i<l; i++) {
+        var c_a = a.desc.charCodeAt(i);
+        var c_b = b.desc.charCodeAt(i);
+        if (c_a < c_b) { return -1; }  
+        if (c_a > c_b) { return 1; }
+    }
+    return 0;
+}
+
 
 
 

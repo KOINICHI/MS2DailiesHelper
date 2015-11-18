@@ -70,13 +70,14 @@ li:hover {
     margin-bottom: 10px;
     
 }
-.my-quest-clear-all {
+.my-quest-button {
     margin-left: 5px;
     border-radius: 5px;
     border: #cccccc 2px solid;
     background-color: #fcfcfc;
+    width: 180px;
 }
-.my-quest-clear-all:hover {
+.my-quest-button:hover {
     background-color: #efefef;
     cursor: pointer;
 }
