@@ -23,12 +23,12 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
 	$scope.LifeOthers = ['트로이 여관에 앉아 있기'];
 	$scope.LifeOthersMap = ['트라이아'];
 	
-	$scope.Actions = ['비행하기', '점프하기', '탈것 타고 이동하기', '달리기', '벽타고 이동하기', '기어가기', '로프에 매달려있기', '물속에 있기', '택시 이용하기', '비석을 때려 부활을 도와주기', '나무 상자 열어보기', '황금 보물 상자 열어보기', '알리카르 감옥의 쓰레기통 뒤지기', '사용하지 않는 장비 분해하기', '망원경 들여다보기', '잃어버린 기억의 숲/달빛누리 숲/바움나무/엘보의 통나무 굴 망원경 들여다보기', '커닝시티/실버스톤 브릿지/스티머 부르크 망원경 들여다보기', '잔디 위에 있기'];
+	$scope.Actions = ['비행하기', '점프하기', '탈것 타고 이동하기', '달리기', '벽타고 이동하기', '기어가기', '로프에 매달려있기', '물속에 있기', '택시 이용하기', '비석을 때려 부활을 도와주기', '나무 상자 열어보기', '황금 보물 상자 열어보기', '알리카르 감옥의 쓰레기통 뒤지기', '사용하지 않는 장비 분해하기', '망원경 들여다보기', '잃어버린 기억의 숲/달빛누리 숲/바움나무/엘보의 통나무 굴 망원경 들여다보기', '커닝시티/실버스톤 브릿지/스티머 부르크 망원경 들여다보기', '잔디 위에 있기', '트라이아,커닝시티,헤네시스,엘리니아,페리온,탈리스커 방문하기'];
 	$scope.ActionsMap = null;
 	$scope.Visiting = ['스페이스 번지 점프','무지개 슬라임 공장', '쿰바왕카의 보물', '때려때려 돈나무', '설눈이의 꿈', '쉐도우 월드', '파이널 서바이버'];
 	$scope.VisitingMap = ['','','','','','','짝수 시 35분(예: 2시 35분)에 퀸즈타운'];
 	
-	$scope.Postfixes = ['형 몬스터 처치', ' 처치', ' 클리어', ' 몬스터 공격', '', '', ' 구해오기', '', '', ' 입장하기'];
+	$scope.Postfixes = ['형 몬스터 처치하기', ' 처치하기', ' 클리어하기', ' 몬스터 공격하기', '', '', ' 구해오기', '', '', ' 입장하기'];
 	
 	$scope.QuestsType = [[$scope.Monsters, $scope.MonstersMap], [$scope.Bosses, $scope.BossesMap], [$scope.Dungeons, $scope.DungeonsMap], [$scope.BattleObjects, $scope.BattleObjectsMap], [$scope.Housing, $scope.HousingMap], [$scope.Using, $scope.UsingMap], [$scope.Storybook, $scope.StorybookMap], [$scope.LifeOthers, $scope.LifeOthersMap], [$scope.Actions, $scope.ActionsMap], [$scope.Visiting, $scope.VisitingMap]];
 	$scope.Quests = [];
