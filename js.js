@@ -122,7 +122,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', function($scope) {
                     setCookie($scope.Quests[i].id, 'notstarted', 365);
                 }
             }
-            e.target.innerHTML = '클리어한 퀘스트 지우기';
+            e.target.innerHTML = '완료한 퀘스트 정리하기';
         	$scope.confirmRemoveAll = true;
         }
     }
