@@ -11,6 +11,15 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: #ff3333;
+    transition: color 0.2s;
+}
+a:hover {
+	color:#faa;
+}
+
 #main {
     margin: 100px auto;
 }
