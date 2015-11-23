@@ -41,6 +41,7 @@ a:hover {
     width: 100%;
     height: 1000%;
     background-color: rgba(0,0,0,0.7);
+    cursor: pointer;
 }
 .popup {
     position: absolute;
