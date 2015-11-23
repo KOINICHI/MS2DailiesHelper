@@ -1,4 +1,4 @@
-﻿var Main = angular.module('ArikkariHelper', []);
+var Main = angular.module('ArikkariHelper', []);
 
 Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.QuestNPC = ['알리야르','마요르','고다르'];
