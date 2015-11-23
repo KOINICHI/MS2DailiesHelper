@@ -37,7 +37,6 @@
 <div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
     <div ng-show="currentScreen == 1" class='popup map' ng-click="currentScreen = 1; $event.stopPropagation();">
         <span style="font-size: 16pt; font-weight: bold">퀘스트 진행 가능 지역</span>
-        <span ng-click="currentScreen = 0" class='popup-close-button'>X</span>
         <ul class='my-map'>
             <li class='my-map-list-item' ng-repeat="x in ((Quests | listFilter:filtertext) | ongoingMapFilter)">
                 {{Maps[x]}}
@@ -45,7 +44,6 @@
         </ul>
     </div>
     <div ng-show="currentScreen == 2" class='popup home' ng-click="currentScreen = 2; $event.stopPropagation();">
-        <span ng-click="currentScreen = 0" class='popup-close-button'>X</span>
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
             <br />
