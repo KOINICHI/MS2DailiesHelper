@@ -2,59 +2,81 @@
 <html>
 <script src="./angular.min.js"></script>
 <script src="./cookies.js"></script>
-<script src="./js.js?6"></script>
+<script src="./js.js?7"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
-<body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl">
+<body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl" ng-keydown="keydownHandler($event)" data-ng-init="init()">
 <div class='my-quest-control'>
     <div class='float-left'>
-        <span class='my-quest-desc'> 진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개</span>
+        <span class='my-quest-desc'>
+            <span class='home-button' ng-click="currentScreen = 2">≡</span>
+            진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개
+        </span>
         <input type="search" class='search' ng-model="filtertext" placeholder="필터" value=""/>
     </div>
     <div class='float-right'>
         <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
         <button class='my-quest-button' ng-click="removeClearedQuests($event)">완료한 퀘스트 정리하기</button>
+        <button class='my-quest-button-small' ng-click="viewMap($event)">맵 보기</button>
     </div>
     <div class='float-clear'> </div>
 </div>
 <div id='main'>
     <ul class='my-quest'>
-        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
-            <span name="{{x.id}}"><span name="{{x.id}}" ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
+        <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
+            <span name="{{x.id}}">{{x.desc}}</span>
         </li>
         <hr style="visibility:hidden; margin-bottom: 30px;" />
-        <li name="{{x.id}}" class='my-quest-list-item {{x.status}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
-            <span name="{{x.id}}"><span name="{{x.id}}" ng-hide="!x.map.length">{{x.map}}에서</span> {{x.desc}} </span>
+        <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
+            <span name="{{x.id}}">{{x.desc}}</span>
         </li>
     </ul>
-    <p class='my-quest-list-item ongoing' style="min-width:89%; margin: 50px;">
-        <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
-        <br />
-        앞으로 할 일 :<br />
-        0. 이 메시지 어떻게 좀 더 잘 보이게 하기... (_ _)<br />
-        1. 월드맵에 진행중인 퀘스트 표시하기 <br />
-        2. 서브 퀘스트 지원 (대도시의 활기 같은 거...)<br />
-        3. 여러 캐릭터 지원하기 (?)<br />
-        4. 루트 추천 기능. 아마 머나먼 미래...<br />
-        <br />
-        퀘스트를 클릭하면 진행중으로 바꿀 수 있습니다. <br />
-        진행중인 퀘스트를 한번 더 클릭하면 완료함으로 바꿀 수 있고 <br />
-        한번 더 클릭하면 다시 진행중으로 되돌릴 수 있습니다. <br />
-        클리어한 퀘스트는 오른쪽 위에 버튼을 눌러 원래대로 되돌릴 수 있습니다. <br />
-        <br />
-        이 페지는 쿠키를 이용합니다. <br />
-        비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />
-        <br />
-        혹시 "모든 아이템이 갖춰져 있다!" 하시는 분들 중 <br />
-        이곳에 집 광고를 올리고 싶으신 분이 계시면 '치즈모치' 로 편지 보내주세요! <br />
-        확인 후 올려드리겠습니다.<br />
-        <br />
-        마지막으로 깨알 홍보 플레이 스토어에서 <a href="https://play.google.com/store/apps/details?id=kr.koinichi.ms2bosstimer" target="_blank">MS2 보스 타이머</a>도 확인해주세여! <br />
-        <br />
-        - '메럿' 길드 치즈모치 -  <br />
-    </p>
 </div>
+
+<div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
+    <div ng-show="currentScreen == 1" class='popup map' ng-click="currentScreen = 1; $event.stopPropagation();">
+        <span style="font-size: 16pt; font-weight: bold">퀘스트 진행 가능 지역</span>
+        <span ng-click="currentScreen = 0" class='popup-close-button'>X</span>
+        <ul class='my-map'>
+            <li class='my-map-list-item' ng-repeat="x in ((Quests | listFilter:filtertext) | ongoingMapFilter)">
+                {{Maps[x]}}
+            </li>
+        </ul>
+    </div>
+    <div ng-show="currentScreen == 2" class='popup home' ng-click="currentScreen = 2; $event.stopPropagation();">
+        <span ng-click="currentScreen = 0" class='popup-close-button'>X</span>
+        <p style="min-width:90%; margin: 0px auto;">
+            <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
+            <br />
+            <span style="color:red; font-weight:bold">구조적으로 큰 변화가 있었습니다. 이상한 점이 있으면 캐시/쿠키를 삭제 후 다시 시도해주세요.</span> <br />
+            <br />
+            앞으로 할 일 :<br />
+            0. 사냥/오브젝트 맵 데이터 추가 <br />
+            1. 맵보기 이미지화 <br />
+            2. 여러 캐릭터 지원하기 (?)<br />
+            3. 루트 추천 기능. 아마 머나먼 미래...<br />
+            <br />
+            퀘스트를 클릭하면 진행중으로 바꿀 수 있습니다. <br />
+            진행중인 퀘스트를 한번 더 클릭하면 완료함으로 바꿀 수 있고 <br />
+            한번 더 클릭하면 다시 진행중으로 되돌릴 수 있습니다. <br />
+            클리어한 퀘스트는 오른쪽 위에 버튼을 눌러 원래대로 되돌릴 수 있습니다. <br />
+            H키를 누르면 이 페이지를, W키를 누르면 맵 페이지를 열 수 있습니다. <br />
+            <br />
+            이 페지는 쿠키를 이용합니다. <br />
+            비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />
+            <br />
+            혹시 "모든 아이템이 갖춰져 있다!" 하시는 분들 중 <br />
+            이곳에 집 광고를 올리고 싶으신 분이 계시면 '치즈모치' 로 편지 보내주세요! <br />
+            확인 후 올려드리겠습니다.<br />
+            <br />
+            마지막으로 깨알 홍보 플레이 스토어에서 <a href="https://play.google.com/store/apps/details?id=kr.koinichi.ms2bosstimer" target="_blank">MS2 보스 타이머</a>도 확인해주세여! <br />
+            <br />
+            - '메럿' 길드 치즈모치 -  <br />
+        </p>
+    </div>
+</div>
+
 </body>
 </html>
 

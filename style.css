@@ -34,8 +34,55 @@ a:hover {
     clear: both;
 }
 
+.popup-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1000%;
+    background-color: rgba(0,0,0,0.7);
+}
+.popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 60%;
+    margin: 75px auto 0px auto;
+    padding: 30px;
+    
+    border: #cccccc 3px solid;
+    border-radius: 10px;
+    background: #ffffff;
+}
+.popup-close-button {
+    position: absolute;
+    background-color: transparent;
+    color: #000000;
+    font-size: 16pt;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 5px 10px 0px 0px;
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+.popup-close-button:hover {
+    cursor: pointer;
+}
 
-
+.home-button {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 30pt;
+    line-height: 0pt;
+}
+.home-button:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
 .my-quest-control {
     position: fixed;
     left: 0;
@@ -64,6 +111,14 @@ a:hover {
 .search:hover {
     border: #cfcfcf 2px solid;
 }
+.my-quest-button-small {
+    margin-left: 5px;
+    border-radius: 3px;
+    border: #ccccff 2px solid;
+    background-color: #fcfcfc;
+    min-width: 40px;
+    height: 40px;
+}
 .my-quest-button {
     margin-left: 5px;
     border-radius: 3px;
@@ -72,7 +127,7 @@ a:hover {
     width: 200px;
     height: 40px;
 }
-.my-quest-button:hover {
+.my-quest-button:hover, .my-quest-button-small:hover {
     background-color: #f9f9f9;
     cursor: pointer;
 }
@@ -122,9 +177,18 @@ a:hover {
 }
 
 
-
-
-
+.map {
+}
+.my-map {
+    list-style: none;
+    margin: 25px 0px 0px 0px;
+    height: 85%;
+}
+.my-map-list-item {
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
 /*
 .all-quest {
