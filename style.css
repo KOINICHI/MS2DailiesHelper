@@ -125,7 +125,7 @@ a:hover {
     border-radius: 3px;
     border: #cccccc 2px solid;
     background-color: #fcfcfc;
-    width: 200px;
+    max-width: 200px;
     height: 40px;
 }
 .my-quest-button:hover, .my-quest-button-small:hover {
