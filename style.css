@@ -126,6 +126,7 @@ a:hover {
     border: #cccccc 2px solid;
     background-color: #fcfcfc;
     max-width: 200px;
+    min-width: 180px;
     height: 40px;
 }
 .my-quest-button:hover, .my-quest-button-small:hover {
