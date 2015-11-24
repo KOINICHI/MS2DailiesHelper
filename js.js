@@ -31,6 +31,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			$scope.currentScreen = 2;
 			setCookie('visited', '1', 365);
 		}
+        else {
+			$scope.currentScreen = 0;
+        }
 	}
 	
 	$scope.currentScreen = 0;
