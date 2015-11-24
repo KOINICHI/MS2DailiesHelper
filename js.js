@@ -29,7 +29,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	$scope.init = function () {
 		if (getCookie('visited') == 0) {
 			$scope.currentScreen = 2;
-			setCookie('visited', '1')
+			setCookie('visited', '1', 365);
 		}
 	}
 	
