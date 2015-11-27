@@ -188,8 +188,8 @@ a:hover {
 
 #worldmap-wrap {
     overflow: hidden;
-    height: 90%;
-    width: 90%;
+    max-width: 90%;
+    max-height: 90%;
 }
 #worldmap {
     width: 100%;
