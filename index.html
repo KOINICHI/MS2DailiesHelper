@@ -39,7 +39,7 @@
         <span style="font-size: 16pt; font-weight: bold">퀘스트 진행 가능 지역</span>
         <ul class='my-map'>
             <li class='my-map-list-item' ng-repeat="x in ((Quests | listFilter:filtertext) | ongoingMapFilter)">
-                {{Maps[x]}}
+                {{Maps[x].name}}
             </li>
         </ul>
     </div>
