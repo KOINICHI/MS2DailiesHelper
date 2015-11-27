@@ -16,7 +16,7 @@ $('#worldmap-wrap').mousemove( function(e) {
 	var z_w = worldmap_zoom.width();
 	var z_h = worldmap_zoom.height();
 	
-	var t = -y*(z_h/h) + h/2;
+	var t = -y*(z_h/h) + h/3;
 	t = Math.min(t, 0);
 	t = Math.max(t, -z_h+h);
 	var l = -x*(z_w/w) + w/2;
