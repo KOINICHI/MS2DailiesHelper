@@ -189,7 +189,7 @@ Main.filter('ongoingMapFilter', [function() {
 		for (i=0; i<list.length; i++) {
 			if (list[i].status == 1) {
 				for (j=0; j<list[i].map.length; j++) {
-					if (ret.indexOf(list[i].map[j])) {
+					if (ret.indexOf(list[i].map[j]) < 0) {
 						ret.push(list[i].map[j]);
 					}
 				}
