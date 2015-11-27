@@ -47,10 +47,20 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			$scope.currentScreen = 0;
 		}
 		if (e.keyCode == 87) { // W
-			$scope.currentScreen = 1;
+			if ($scope.currentScreen == 1) {
+				$scope.currentScreen = 0;
+			}
+			else {
+				$scope.currentScreen = 1;
+			}
 		}
 		if (e.keyCode == 72) { // H
-			$scope.currentScreen = 2;
+			if ($scope.currentScreen == 2) {
+				$scope.currentScreen = 0;
+			}
+			else {
+				$scope.currentScreen = 2;
+			}
 		}
 	}
 	

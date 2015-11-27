@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-<script src="./angular.min.js"></script>
-<script src="./cookies.js"></script>
-<script src="./js.js?9"></script>
+<script type="text/javascript" src="./angular.min.js"></script>
+<script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="./cookies.js"></script>
+<script type="text/javascript" src="./js.js?10"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
@@ -35,25 +36,20 @@
 </div>
 
 <div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
-    <div ng-show="currentScreen == 1" class='popup map' ng-click="currentScreen = 1; $event.stopPropagation();">
-        <span style="font-size: 16pt; font-weight: bold">퀘스트 진행 가능 지역</span>
-        <ul class='my-map'>
-            <li class='my-map-list-item' ng-repeat="x in ((Quests | listFilter:filtertext) | ongoingMapFilter)">
-                {{Maps[x].name}}
-            </li>
-        </ul>
+    <div id="worldmap-wrap" ng-show="currentScreen == 1" class='popup map' style="padding:0" ng-click="currentScreen = 1;" >
+        <img id='worldmap' src="./worldmap.jpg" />
+        <img id='worldmap-zoom' src="./worldmap.jpg" />
     </div>
     <div ng-show="currentScreen == 2" class='popup home' ng-click="currentScreen = 2; $event.stopPropagation();">
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미 </span> <br />
             <br />
-            월드맵 추가 작업 중에 있습니다. 그동안엔 맵보기 리스트가 엄청 길 거예요...<br />
+            작업중:<br />
+            월드맵 <br />
             <br />
             앞으로 할 일 :<br />
-            0. 오브젝트 맵 데이터 추가 <br />
-            1. 맵보기 이미지화 <br />
-            2. 여러 캐릭터 지원하기 (?)<br />
-            3. 루트 추천 기능. 아마 머나먼 미래...<br />
+            1. 여러 캐릭터 지원하기 (?)<br />
+            2. 루트 추천 기능. 아마 머나먼 미래...<br />
             <br />
             퀘스트를 클릭하면 진행중으로 바꿀 수 있습니다. <br />
             진행중인 퀘스트를 한번 더 클릭하면 완료함으로 바꿀 수 있고 <br />
@@ -76,5 +72,7 @@
 </div>
 
 </body>
+
+<script type="text/javascript" src="./worldmap.js?0"></script>
 </html>
 
