@@ -14,7 +14,12 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 		for (i=0; i<$scope.Quests.length; i++) {
 			var status = getCookie($scope.Quests[i].id);
 			if (status == 0 || status == 'notstarted') { $scope.Quests[i].status = 0; }
-			if (status == 1 || status == 'ongoing') { $scope.Quests[i].status = 1; }
+			if (status == 1 || status == 'ongoing') {
+				$scope.Quests[i].status = 1;
+				for (j=0; j<$scope.Quests[i].map.length; j++) {
+					$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
+				}
+			}
 			if (status == 2 || status == 'cleared') { $scope.Quests[i].status = 2; }
 		}
 	});
@@ -74,7 +79,6 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			if ($scope.Quests[i].id == id) {
 				$scope.Quests[i].status = 1;
 				setCookie(id, '1', 365);
-				
 				for (j=0; j<$scope.Quests[i].map.length; j++) {
 					$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
 				}
