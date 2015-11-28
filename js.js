@@ -15,7 +15,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			$scope.Maps[map].quests = [];
 		}
 	});
+	
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/quests.json').success( function (res) {
+		while ($scope.Maps.length == 0) ;
 		$scope.Quests = res;
 		for (i=0; i<$scope.Quests.length; i++) {
 			var status = getCookie($scope.Quests[i].id);
