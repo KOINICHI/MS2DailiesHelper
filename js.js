@@ -9,27 +9,25 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	
 	$scope.Quests = [];
 	$scope.Maps = [];
-	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (res) {
-		$scope.Maps = res;
+	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (map_res) {
+		$scope.Maps = map_res;
 		for (var map in $scope.Maps) {
 			$scope.Maps[map].quests = [];
 		}
-	});
-	
-	$http.get('http://koinichi.github.io/MS2DailiesHelper/quests.json').success( function (res) {
-		while ($scope.Maps.length == 0) ;
-		$scope.Quests = res;
-		for (i=0; i<$scope.Quests.length; i++) {
-			var status = getCookie($scope.Quests[i].id);
-			if (status == 0 || status == 'notstarted') { $scope.Quests[i].status = 0; }
-			if (status == 1 || status == 'ongoing') {
-				$scope.Quests[i].status = 1;
-				for (j=0; j<$scope.Quests[i].map.length; j++) {
-					$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
+		$http.get('http://koinichi.github.io/MS2DailiesHelper/quests.json').success( function (quest_res) {
+			$scope.Quests = quest_res;
+			for (i=0; i<$scope.Quests.length; i++) {
+				var status = getCookie($scope.Quests[i].id);
+				if (status == 0 || status == 'notstarted') { $scope.Quests[i].status = 0; }
+				if (status == 1 || status == 'ongoing') {
+					$scope.Quests[i].status = 1;
+					for (j=0; j<$scope.Quests[i].map.length; j++) {
+						$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
+					}
 				}
+				if (status == 2 || status == 'cleared') { $scope.Quests[i].status = 2; }
 			}
-			if (status == 2 || status == 'cleared') { $scope.Quests[i].status = 2; }
-		}
+		});
 	});
 	
 	$scope.Quests.sort( function(a, b) {
