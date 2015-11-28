@@ -9,6 +9,12 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	
 	$scope.Quests = [];
 	$scope.Maps = [];
+	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (res) {
+		$scope.Maps = res;
+		for (var map in $scope.Maps) {
+			$scope.Maps[map].quests = [];
+		}
+	});
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/quests.json').success( function (res) {
 		$scope.Quests = res;
 		for (i=0; i<$scope.Quests.length; i++) {
@@ -21,12 +27,6 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 				}
 			}
 			if (status == 2 || status == 'cleared') { $scope.Quests[i].status = 2; }
-		}
-	});
-	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (res) {
-		$scope.Maps = res;
-		for (var map in $scope.Maps) {
-			$scope.Maps[map].quests = [];
 		}
 	});
 	
