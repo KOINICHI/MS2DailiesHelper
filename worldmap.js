@@ -5,6 +5,14 @@ $('body').ready( function(e) {
 $('#worldmap-wrap').mouseenter( function(e) {
 	$('#worldmap-zoom').show();
 	$('.worldmap-quest-excl').css('visibility','visible');
+	
+	
+	$('.worldmap-quest-excl').hover( function(e) {
+		$('ul[name=' + e.target.name + ']').css('visibility','visible');
+	});
+	$('.worldmap-quest-excl').mouseleave( function(e) {
+		$('ul[name=' + e.target.name + ']').css('visibility','hidden');
+	});
 });
 $('#worldmap-wrap').mousemove( function(e) {
 	var worldmap = $('#worldmap');
@@ -44,6 +52,8 @@ $('#worldmap-wrap').mousemove( function(e) {
 		var m = Scope.Maps[Maps[i]];
 		$('img[name=' + Maps[i] + ']').css('left', (m.x + l - 9) + 'px')
 									  .css('top',  (m.y + t - 14) + 'px');
+		$('ul[name=' + Maps[i] + ']').css('left', (m.x + l - 9) + 'px')
+									 .css('top',  (m.y + t + 14) + 'px');
 	}
 });
 
@@ -51,3 +61,4 @@ $('#worldmap-wrap').mouseleave( function(e) {
 	$('#worldmap-zoom').hide();
 	$('.worldmap-quest-excl').css('visibility','hidden');
 });
+

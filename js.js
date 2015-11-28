@@ -20,6 +20,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (res) {
 		$scope.Maps = res;
+		for (var map in $scope.Maps) {
+			$scope.Maps[map].quests = [];
+		}
 	});
 	
 	$scope.Quests.sort( function(a, b) {
@@ -71,7 +74,10 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			if ($scope.Quests[i].id == id) {
 				$scope.Quests[i].status = 1;
 				setCookie(id, '1', 365);
-				break;
+				
+				for (j=0; j<$scope.Quests[i].map.length; j++) {
+					$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
+				}
 			}
 		}
 	};
@@ -222,3 +228,7 @@ String.prototype.getHashCode = function() {
 String.prototype.getTail = function() {
 	return (this.charCodeAt(0)-44032) % 28;
 }
+
+String.prototype.truncate = function(l) {
+	return (this.length > l) ? '...' + this.substring(this.length-l,this.length) : this;
+};

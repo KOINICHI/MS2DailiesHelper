@@ -40,6 +40,10 @@
         <img id='worldmap' src="./worldmap.jpg" />
         <img id='worldmap-zoom' src="./worldmap.jpg" />
         <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" />
+        <ul name='{{x}}' class='worldmap-quest-list' ng-repeat="x in (Quests | ongoingMapFilter)">
+            <span class='worldmap-quest-list-title'>{{Maps[x].name}}</span>
+            <li class='worldmap-quest-list-item' ng-repeat="y in Maps[x].quests">{{y}}</li>
+        </ul>
     </div>
     <div ng-show="currentScreen == 2" class='popup home' ng-click="currentScreen = 2; $event.stopPropagation();">
         <p style="min-width:90%; margin: 0px auto;">

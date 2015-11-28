@@ -204,26 +204,34 @@ a:hover {
     top: 0px;
     left: 0px;
     
-    border-radius:7px;
 }
 
 .worldmap-quest {
     z-index: 10;
     position: absolute;
-    list-style: none;
-    
-    width: 20%;
-    
-    margin: 0px;
-    padding: 0px;
-    
-    border: #cccccc 3px solid;
-    border-radius: 10px;
-    background: #ffffff;
 }
 .worldmap-quest-list {
+    visibility: hidden;
+    z-index: 21;
+    position: absolute;
+    list-style: none;
+    width: 220px;
+    text-align: center;
+    margin: 0px;
+    padding: 5px;
+    border: #333333 2px solid;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.75);
 }
-.worldmap-quest-list-item {   
+.worldmap-quest-list-title {
+    color: #ffffff;
+    font-size: 0.8em;
+    
+}
+.worldmap-quest-list-item {
+    color: #ffffff;
+    font-size: 0.7em;
+    text-align: left;
 }
 .worldmap-quest-excl {
     visibility: hidden;
