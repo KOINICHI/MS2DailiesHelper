@@ -207,6 +207,29 @@ a:hover {
     border-radius:7px;
 }
 
+.worldmap-quest {
+    z-index: 10;
+    position: absolute;
+    list-style: none;
+    
+    width: 20%;
+    
+    margin: 0px;
+    padding: 0px;
+    
+    border: #cccccc 3px solid;
+    border-radius: 10px;
+    background: #ffffff;
+}
+.worldmap-quest-list {
+}
+.worldmap-quest-list-item {   
+}
+.worldmap-quest-excl {
+    visibility: hidden;
+    z-index: 20;
+    position: absolute;
+}
 
 /*
 .all-quest {

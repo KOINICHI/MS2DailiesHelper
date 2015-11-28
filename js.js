@@ -127,6 +127,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
         }
     };
 	
+	
+	
 }]);
 
 Main.filter('listFilter', [function() {
@@ -205,19 +207,6 @@ Main.filter('ongoingMapFilter', [function() {
 				}
 			}
 		}
-		ret = ret.sort(function(a, b) {
-			var l = Math.min(a.length, b.length);
-			for (i=0; i<l; i++) {
-				var c_a = a.charCodeAt(i);
-				var c_b = b.charCodeAt(i);
-				if (c_a > c_b) { return 1; }
-				if (c_a < c_b) { return -1; }  
-			}
-			if (a.length != b.length) {
-				return ((a.length > b.length) ? 1 : -1);
-			}
-			return 0;
-		});
 		return ret
 	};
 }]);
