@@ -31,7 +31,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	
 	$scope.Quests.sort( function(a, b) {
-		return ((a.key != b.key) ? 0 : (a.key > b.key ? 1 : -1));
+		a_k = a.desc.charCodeAt(0);
+		b_k = b.desc.charCodeAt(0)
+		return ((a_k != b_k) ? 0 : (a_k > b_k ? 1 : -1));
 	});
 	
 	$scope.init = function () {
