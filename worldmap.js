@@ -53,14 +53,11 @@ $('#worldmap-wrap').mousemove( function(e) {
         var worldmap_zoom = $('#worldmap-zoom');
         
         var t = e.pageY-startY;
-        console.log(e.pageY + ' ' + startY);
         t = Math.min(t, 0);
         t = Math.max(t, worldmap_wrap.height() - worldmap_zoom.height());
         var l = e.pageX-startX;
-        console.log(e.pageX + ' ' + startX);
         l = Math.min(l, 0);
         l = Math.max(l, worldmap_wrap.width() - worldmap_zoom.width());
-        console.log(t + " " + l);
         worldmap_zoom.css('top', t + 'px');
         worldmap_zoom.css('left', l + 'px');
         showExcl(t, l);
