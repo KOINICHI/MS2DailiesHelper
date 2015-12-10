@@ -223,6 +223,18 @@ Main.filter('ongoingMapFilter', [function() {
 	};
 }]);
 
+Main.directive('hovertoshow', function() {
+    return {
+        link : function(scope, elem, attrs) {
+            elem.bind('mouseenter', function() {
+                $('ul[name=' + elem[0].name + ']').css('visibility', 'visible');
+            });
+            elem.bind('mouseleave', function() {
+                $('ul[name=' + elem[0].name + ']').css('visibility', 'hidden');
+            });
+        }
+    };
+});
 
 String.prototype.getHashCode = function() {
 	var hash = 0;

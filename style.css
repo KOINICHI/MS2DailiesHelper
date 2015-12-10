@@ -201,9 +201,6 @@ a:hover {
 }
 #worldmap-zoom {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    
 }
 
 .worldmap-quest {
@@ -234,7 +231,6 @@ a:hover {
     text-align: left;
 }
 .worldmap-quest-excl {
-    visibility: hidden;
     z-index: 20;
     position: absolute;
 }
