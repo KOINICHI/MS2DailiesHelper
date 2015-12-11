@@ -11,8 +11,9 @@
 <div class='my-quest-control'>
     <div class='float-left'>
         <span class='my-quest-desc'>
-            <span class='home-button' ng-click="currentScreen = 2">≡</span>
-            진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개
+            <span class='home-button' ng-click="currentScreen = 2">
+                진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개
+            </span>
         </span>
         <input type="search" class='search' ng-model="filtertext" placeholder="필터" value=""/>
     </div>

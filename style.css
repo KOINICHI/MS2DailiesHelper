@@ -83,10 +83,6 @@ a:hover {
 
 .home-button {
     border: none;
-    background-color: transparent;
-    font-weight: bold;
-    font-size: 30pt;
-    line-height: 0pt;
 }
 .home-button:hover {
     cursor: pointer;
