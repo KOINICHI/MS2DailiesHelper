@@ -37,9 +37,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	
 	$scope.init = function () {
-		if (getCookie('visited') < 3) {
+		if (getCookie('visited') < 4) {
 			$scope.currentScreen = 2;
-			setCookie('visited', '3', 365);
+			setCookie('visited', '4', 365);
 		}
         else {
 			$scope.currentScreen = 0;
@@ -225,6 +225,7 @@ Main.filter('ongoingMapFilter', [function() {
 	};
 }]);
 
+var tappedOnExcl = false;
 Main.directive('hovertoshow', function() {
     return {
         link : function(scope, elem, attrs) {
@@ -233,6 +234,10 @@ Main.directive('hovertoshow', function() {
             });
             elem.bind('mouseleave', function() {
                 $('ul[name=' + elem[0].name + ']').css('visibility', 'hidden');
+            });
+            elem.bind('touchstart', function(e) {
+                $('ul[name=' + elem[0].name + ']').css('visibility', 'visible');
+                tappedOnExcl = true;
             });
         }
     };

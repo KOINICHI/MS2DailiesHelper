@@ -77,7 +77,7 @@ $('#worldmap-wrap').mousemove( function(e) {
 
 
 
-$('#worldmap-wrap').on('touchstart', ( function(e) {
+$('#worldmap-wrap').on('touchstart', function(e) {
     e.preventDefault();
     isMapDragged = true;
     var worldmap_zoom = $('#worldmap-zoom');
@@ -86,11 +86,15 @@ $('#worldmap-wrap').on('touchstart', ( function(e) {
     var pos = e.originalEvent.touches[0];
     startX = pos.pageX - offsetX;
     startY = pos.pageY - offsetY;
-}));
-$('#worldmap-wrap').on('touchmove', ( function(e) {
+    if (!tappedOnExcl) {
+        $('.worldmap-quest-list').css('visibility', 'hidden');
+    }
+});
+$('#worldmap-wrap').on('touchmove', function(e) {
     var pos = e.originalEvent.touches[0];
     handleMove(pos.pageX, pos.pageY);
-}));
-$('#worldmap-wrap').on('touchend', ( function(e) {
+});
+$('#worldmap-wrap').on('touchend', function(e) {
     isMapDragged = false;
-}));
+    tappedOnExcl = false;
+});
