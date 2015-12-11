@@ -81,13 +81,6 @@ a:hover {
     cursor: pointer;
 }
 
-.home-button {
-    border: none;
-}
-.home-button:hover {
-    cursor: pointer;
-    color: #ffffff;
-}
 .my-quest-control {
     position: fixed;
     left: 0;
@@ -106,6 +99,11 @@ a:hover {
     margin: 5px 10px 0px 10px;
     font-size: 16pt;
 }
+.my-quest-desc:hover {
+    cursor: pointer;
+    color: #aaaaaa;
+}
+
 .search {
     display:inline-block;
     float: left;

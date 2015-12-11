@@ -10,10 +10,8 @@
 <body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl" ng-keydown="keydownHandler($event)" data-ng-init="init()">
 <div class='my-quest-control'>
     <div class='float-left'>
-        <span class='my-quest-desc'>
-            <span class='home-button' ng-click="currentScreen = 2">
-                진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개
-            </span>
+        <span class='my-quest-desc' ng-click="currentScreen = 2">
+            진행중인 퀘스트 {{(Quests | ongoingFilter).length}}개
         </span>
         <input type="search" class='search' ng-model="filtertext" placeholder="필터" value=""/>
     </div>
