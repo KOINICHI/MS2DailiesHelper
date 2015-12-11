@@ -5,6 +5,9 @@ var startX, startY;
 var showExcl = function(t, l) {
     var Scope = angular.element('[ng-controller=ArikkariHelperCtrl]').scope();       
     var Maps = {};
+
+    t = parseInt(t);
+    l = parseInt(l);
     for (i=0; i<Scope.Quests.length; i++) {
         if (Scope.Quests[i].status == 1) {
             for (j=0; j<Scope.Quests[i].map.length; j++) {

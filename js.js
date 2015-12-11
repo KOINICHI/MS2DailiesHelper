@@ -62,6 +62,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			}
 			else {
 				$scope.currentScreen = 1;
+                var worldmap_zoom = $('#worldmap-zoom');
+                showExcl(worldmap_zoom.css('top'), worldmap_zoom.css('left'));
 			}
 		}
 		if (e.keyCode == 72) { // H
