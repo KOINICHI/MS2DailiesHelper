@@ -182,8 +182,8 @@ a:hover {
 
 #worldmap-wrap {
     overflow: hidden;
-    height: 1000px;
     max-width: 80%;
+    min-height: 90%;
     max-height: 90%;
     background: url('./bg_map_ptn.jpg');
     background-repeat: repeat;
