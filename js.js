@@ -62,6 +62,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			}
 			else {
 				$scope.currentScreen = 1;
+                var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
+                showExcl(worldmap.css('top'), worldmap.css('left'));
 			}
 		}
 		if (e.keyCode == 72) { // H
@@ -138,9 +140,6 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
         	$scope.confirmRemoveAll = true;
         }
     };
-	
-	
-	
 }]);
 
 Main.filter('listFilter', [function() {

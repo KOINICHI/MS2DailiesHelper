@@ -27,6 +27,14 @@ var showExcl = function(t, l) {
                     $('ul[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
                                             .css('top',  (m.y + t + 14) + 'px');
                 }
+				if (id[3] != mapIdx) {
+					$('img[name=' + id + ']').hide();
+					$('ul[name=' + id + ']').hide();
+				}
+				else {
+					$('img[name=' + id + ']').show();
+					$('ul[name=' + id + ']').show();
+				}
             }
         }
     }
@@ -44,7 +52,6 @@ var handleMove = function(x, y) {
 		//l = Math.min(l, mapDims[idx][1]*mapTileSize);
         worldmap.css('top', t + 'px');
         worldmap.css('left', l + 'px');
-		console.log(t + ' ' + l);
         showExcl(t, l);
     }
 }
@@ -137,6 +144,8 @@ var handleToggle = function() {
 	mapIdx += 1;
 	mapIdx %= mapTypes.length;
 	displayMap(mapIdx);
+	var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
+	showExcl(worldmap.css('top'), worldmap.css('left'));
 }
 $('#worldmap-toggle').on('touchstart', function(e) {
 	handleToggle();
