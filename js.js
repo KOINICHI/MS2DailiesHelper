@@ -37,9 +37,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	
 	$scope.init = function () {
-		if (getCookie('visited') < 6) {
+		if (getCookie('visited') < 7) {
 			$scope.currentScreen = 2;
-			setCookie('visited', '6', 365);
+			setCookie('visited', '7', 365);
 		}
         else {
 			$scope.currentScreen = 0;
@@ -62,8 +62,6 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			}
 			else {
 				$scope.currentScreen = 1;
-                var worldmap_zoom = $('#worldmap-zoom');
-                showExcl(worldmap_zoom.css('top'), worldmap_zoom.css('left'));
 			}
 		}
 		if (e.keyCode == 72) { // H

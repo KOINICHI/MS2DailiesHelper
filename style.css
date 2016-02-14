@@ -182,8 +182,11 @@ a:hover {
 
 #worldmap-wrap {
     overflow: hidden;
+    height: 1000px;
     max-width: 80%;
     max-height: 90%;
+    background: url('./bg_map_ptn.jpg');
+    background-repeat: repeat;
 }
 #worldmap {
     width: 100%;
@@ -193,7 +196,18 @@ a:hover {
     
     border-radius:7px;
 }
-#worldmap-zoom {
+#worldmap-toggle {
+    display: inline;
+    z-index: 100;
+    position: absolute;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    border-radius:7px;
+    top: 0;
+    right: 0;
+}
+#worldmap-victoria, #worldmap-karkar {
     position: absolute;
 }
 

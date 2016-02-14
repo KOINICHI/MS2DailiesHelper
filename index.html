@@ -3,7 +3,7 @@
 <script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./angular.min.js"></script>
 <script type="text/javascript" src="./cookies.js"></script>
-<script type="text/javascript" src="./js.js?21"></script>
+<script type="text/javascript" src="./js.js?22"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
@@ -36,8 +36,11 @@
 
 <div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
     <div id="worldmap-wrap" ng-show="currentScreen == 1" class='popup map' style="padding: 0px" ng-click="$event.stopPropagation();">
-        <img id='worldmap' src="./worldmap.jpg" />
-        <img id='worldmap-zoom' src="./worldmap.jpg" />
+        <div id="worldmap-toggle">
+            빅토리아 아일랜드
+        </div>
+        <div id="worldmap-victoria"> </div>
+        <div id="worldmap-karkar"> </div>
         <img name='{{x}}' ng-show="currentScreen == 1" class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" hovertoshow />
         <ul name='{{x}}' class='worldmap-quest-list' ng-repeat="x in (Quests | ongoingMapFilter)">
             <span class='worldmap-quest-list-title'>{{Maps[x].name}}</span>
@@ -48,7 +51,7 @@
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미</span> <br />
             <br />
-            <b>카르카르쪽은 맵 만들어지면 추가할게요..... 빅토리아도 맵 바꿀거라 그거랑 같이 할듯...</b><br />
+            <b>업데이트 중입니다</b><br />
             <br />
             앞으로 할 일 :<br />
             0. 월드맵 이미지 좀 더 좋은 걸로 변경</br />
@@ -77,6 +80,6 @@
 
 </body>
 
-<script type="text/javascript" src="./worldmap.js?5"></script>
+<script type="text/javascript" src="./worldmap.js?6"></script>
 </html>
 
