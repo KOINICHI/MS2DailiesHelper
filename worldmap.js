@@ -147,7 +147,7 @@ var handleToggle = function() {
 	var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
 	showExcl(worldmap.css('top'), worldmap.css('left'));
 }
-$('#worldmap-toggle').on('touchstart', function(e) {
+$('#worldmap-toggle').on('touchend', function(e) {
 	handleToggle();
 });
 $('#worldmap-toggle').on('click', function(e) {
