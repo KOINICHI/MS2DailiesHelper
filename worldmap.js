@@ -20,14 +20,12 @@ var showExcl = function(t, l) {
             for (j=0; j<Scope.Quests[i].map.length; j++) {
                 var id = Scope.Quests[i].map[j];
                 var m = Scope.Maps[id];
-				var s_x = 1.6
-				var s_y = 1.6
                 if (Maps[id] == undefined) {
                     Maps[id] = 1;
-                    $('img[name=' + id + ']').css('left', (m.x*s_x + l - 9) + 'px')
-                                             .css('top',  (m.y*s_y + t - 14) + 'px');
-                    $('ul[name=' + id + ']').css('left', (m.x*s_x + l - 9) + 'px')
-                                            .css('top',  (m.y*s_y + t + 14) + 'px');
+                    $('img[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
+                                             .css('top',  (m.y + t - 14) + 'px');
+                    $('ul[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
+                                            .css('top',  (m.y + t + 14) + 'px');
                 }
             }
         }
