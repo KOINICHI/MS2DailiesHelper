@@ -54,6 +54,7 @@ a:hover {
 }
 .popup {
     position: fixed;
+    z-index: 9999;
     top: 5%;
     left: 0;
     right: 0;
