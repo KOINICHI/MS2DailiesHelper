@@ -255,6 +255,7 @@ a:hover {
 .worldmap-quest-excl {
     z-index: 20;
     position: absolute;
+    cursor:pointer;
 }
 
 /*
