@@ -3,7 +3,7 @@
 <script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./angular.min.js"></script>
 <script type="text/javascript" src="./cookies.js"></script>
-<script type="text/javascript" src="./js.js?23"></script>
+<script type="text/javascript" src="./js.js?24"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
@@ -18,50 +18,54 @@
     <div class='float-right'>
         <button class='my-quest-button' ng-click="clearAllQuests($event)">모든 퀘스트 완료하기</button>
         <button class='my-quest-button' ng-click="removeClearedQuests($event)">완료한 퀘스트 정리하기</button>
-        <button class='my-quest-button-small' ng-click="viewMap($event)">맵 보기</button>
+        <button id="my-quest-worldmap-button" class='my-quest-button-small' ng-click="viewMap($event)">맵 숨기기</button>
     </div>
     <div class='float-clear'> </div>
 </div>
 <div id='main'>
-    <ul class='my-quest'>
-        <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
-            <span name="{{x.id}}">{{x.desc}}</span>
-        </li>
-        <hr style="visibility:hidden; margin-bottom: 30px;" />
-        <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
-            <span name="{{x.id}}">{{x.desc}}</span>
-        </li>
-    </ul>
-</div>
-
-<div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
-    <div id="worldmap-wrap" ng-show="currentScreen == 1" class='popup map' style="padding: 0px" ng-click="$event.stopPropagation();">
+    <div id="worldmap-wrap" style="padding: 0px" ng-click="$event.stopPropagation();">
         <div id="worldmap-toggle">
             빅토리아 아일랜드
         </div>
         <div id="worldmap-victoria"> </div>
         <div id="worldmap-karkar"> </div>
-        <img name='{{x}}' ng-show="currentScreen == 1" class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" hovertoshow />
+        <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" style="display:none;" hovertoshow render-excl />
         <ul name='{{x}}' class='worldmap-quest-list' ng-repeat="x in (Quests | ongoingMapFilter)">
             <span class='worldmap-quest-list-title'>{{Maps[x].name}}</span>
             <li class='worldmap-quest-list-item' ng-repeat="y in Maps[x].quests">{{y}}</li>
         </ul>
     </div>
-    <div ng-show="currentScreen == 2" class='popup home' ng-click="$event.stopPropagation();">
+    <div id="my-quest-wrap">
+        <ul class='my-quest'>
+            <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
+                <span name="{{x.id}}">{{x.desc}}</span>
+            </li>
+        </ul>
+        <ul class='my-quest'>
+            <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
+                <span name="{{x.id}}">{{x.desc}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
+        <div ng-show="currentScreen == 2" class='popup home' ng-click="$event.stopPropagation();">
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미</span> <br />
             <br />
+            <b>2016/2/17 : 레이아웃 변경. 건의 받습니다.</b><br />
             <b>2016/2/14 : 카르카르 일퀘 추가, 맵 이미지 변경</b><br />
             <br />
             앞으로 할 일 :<br />
-            1. 여러 캐릭터 지원하기 (?)<br />
+            1. 탭 지원<br />
             2. 루트 추천 기능. 아마 머나먼 미래...<br />
             <br />
             퀘스트를 클릭하면 진행중으로 바꿀 수 있습니다. <br />
             진행중인 퀘스트를 한번 더 클릭하면 완료함으로 바꿀 수 있고 <br />
             한번 더 클릭하면 다시 진행중으로 되돌릴 수 있습니다. <br />
             클리어한 퀘스트는 오른쪽 위에 버튼을 눌러 원래대로 되돌릴 수 있습니다. <br />
-            H키를 누르면 이 페이지를, W키를 누르면 맵 페이지를 열 수 있습니다. <br />
+            H키를 누르면 이 페이지를, M키를 누르면 맵을 숨기고 보이게 할 수 있습니다. <br />
             <br />
             이 페지는 쿠키를 이용합니다. <br />
             비밀 모드 등에서 접속하시면 데이터가 저장되지 않으니 유의해주세요! <br />
@@ -79,7 +83,7 @@
 
 </body>
 
-<script type="text/javascript" src="./worldmap.js?7"></script>
+<script type="text/javascript" src="./worldmap.js?8"></script>
 
 </html>
 

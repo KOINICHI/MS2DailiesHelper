@@ -14,14 +14,15 @@ body {
 a {
     text-decoration: none;
     color: #ff3333;
-    transition: color 0.2s;
+    transition: color 0.3s;
 }
 a:hover {
 	color:#faa;
 }
 
 #main {
-    margin: 100px auto;
+    margin: 80px 0px 0px 0px;
+    clear:both;
 }
 
 .float-left {
@@ -81,6 +82,7 @@ a:hover {
     cursor: pointer;
 }
 
+
 .my-quest-control {
     position: fixed;
     left: 0;
@@ -114,6 +116,16 @@ a:hover {
 .search:hover {
     border: #cfcfcf 2px solid;
 }
+
+#my-quest-wrap {
+    position: fixed;
+    right: 0;
+    vertical-align: top;
+    margin: 0px;
+    width: 40%; 
+    height: 88%;
+    overflow-y: scroll;
+}
 .my-quest-button-small {
     margin-left: 5px;
     border-radius: 3px;
@@ -138,17 +150,13 @@ a:hover {
 
 .my-quest {
     list-style: none;
-    margin: 50px 0px 0px 0px;
-    height: 85%;
 }
 .my-quest-list-item {
-    display: inline-block;
-    max-width: 20%;
-    max-height: 10%;
+    display: block;
+    text-align: left;
     padding: 10px;
     margin: 10px;
     cursor: pointer;
-    border-radius: 5px;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -160,33 +168,37 @@ a:hover {
 .cleared {
     color: #000000;
     text-decoration: line-through;
-    border: #999999 2px solid;
+    border-bottom: #999999 2px solid;
 }
 .cleared:hover {
     border-color: #777777;
 }
 .ongoing {
     color: #000000;
-    border: #999999 2px solid;
+    border-bottom: #999999 2px solid;
 }
 .ongoing:hover {
     border-color: #777777;
 }
 .notstarted {
     color: #999999;
-    border: #ececec 2px solid;
+    border-bottom: #ececec 2px solid;
 }
 .notstarted:hover {
     border-color: #cccccc;
 }
 
 #worldmap-wrap {
+    position: fixed;
+    vertical-align: top;
     overflow: hidden;
-    max-width: 80%;
-    min-height: 90%;
-    max-height: 90%;
+    width: 60%;
+    height: 88%;
+    margin: 10px;
     background: url('./bg_map_ptn.jpg');
     background-repeat: repeat;
+    border: #cccccc 3px solid;
+    border-radius: 10px;
 }
 #worldmap {
     width: 100%;
@@ -208,7 +220,7 @@ a:hover {
     right: 0;
 }
 #worldmap-victoria, #worldmap-karkar {
-    position: absolute;
+    position: relative;
 }
 
 .worldmap-quest {

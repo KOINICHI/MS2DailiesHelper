@@ -9,6 +9,8 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	
 	$scope.Quests = [];
 	$scope.Maps = [];
+
+    $scope.mapShown = true;
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (map_res) {
 		$scope.Maps = map_res;
 		for (var map in $scope.Maps) {
@@ -31,15 +33,21 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	
 	$scope.Quests.sort( function(a, b) {
-		a_k = a.desc.charCodeAt(0);
-		b_k = b.desc.charCodeAt(0)
-		return ((a_k != b_k) ? 0 : (a_k > b_k ? 1 : -1));
+        var a_k, b_k;
+        for (var i=0;;i++) {
+    		a_k = a.desc.charCodeAt(i);
+		    b_k = b.desc.charCodeAt(i);
+            if (a_k != b_k) {
+                break;
+            }
+        }
+		return (a_k > b_k ? 1 : -1);
 	});
 	
 	$scope.init = function () {
-		if (getCookie('visited') < 7) {
+		if (getCookie('visited') < 8) {
 			$scope.currentScreen = 2;
-			setCookie('visited', '7', 365);
+			setCookie('visited', '8', 365);
 		}
         else {
 			$scope.currentScreen = 0;
@@ -48,23 +56,23 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	
 	$scope.currentScreen = 0;
 	$scope.viewMap = function(e) {
-		$scope.currentScreen = 1;
+        if ($scope.mapShown) {
+            $('#my-quest-wrap').css('width', '100%');
+            $('#worldmap-wrap').hide();
+            $('#my-quest-worldmap-button').text('맵 보이기');
+        }
+        else {
+            $('#my-quest-wrap').css('width', '40%');
+            $('#worldmap-wrap').show();
+            $('#my-quest-worldmap-button').text('맵 숨기기');
+        }
+        $scope.mapShown = !$scope.mapShown;
 	}
 	
 	
 	$scope.keydownHandler = function(e) {
 		if (e.keyCode == 27) { // ESC
 			$scope.currentScreen = 0;
-		}
-		if (e.keyCode == 87) { // W
-			if ($scope.currentScreen == 1) {
-				$scope.currentScreen = 0;
-			}
-			else {
-				$scope.currentScreen = 1;
-                var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
-                showExcl(worldmap.css('top'), worldmap.css('left'));
-			}
 		}
 		if (e.keyCode == 72) { // H
 			if ($scope.currentScreen == 2) {
@@ -74,6 +82,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 				$scope.currentScreen = 2;
 			}
 		}
+        if (e.keyCode == 77) {
+            $scope.viewMap();
+        }
 	}
 	
 	$scope.startQuest = function(e) {
@@ -86,6 +97,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 				for (j=0; j<$scope.Quests[i].map.length; j++) {
 					$scope.Maps[$scope.Quests[i].map[j]].quests.push($scope.Quests[i].desc);
 				}
+            break;
 			}
 		}
 	};
@@ -239,6 +251,14 @@ Main.directive('hovertoshow', function() {
         }
     };
 });
+
+Main.directive('renderExcl', ['$timeout',  function($timeout) {
+    return {
+        link : function(scope, elem, attrs) {
+            $timeout(showExcl, 0);
+        }
+    };
+}]);
 
 String.prototype.getHashCode = function() {
 	var hash = 0;

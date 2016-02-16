@@ -5,16 +5,17 @@ var mapNames = ['빅토리아 아일랜드', '카르카르 아일랜드'];
 var mapDisplayed = [false, false];
 var mapTileSize = 256;
 var mapDims = [[11,16],[5,5]]
-	
 var isMapDragged = false;
 var startX, startY;
 
-var showExcl = function(t, l) {
+var showExcl = function() {
     var Scope = angular.element('[ng-controller=ArikkariHelperCtrl]').scope();       
     var Maps = {};
+    var worldmap = $("#worldmap-" + mapTypes[mapIdx]);
 
-    t = parseInt(t);
-    l = parseInt(l);
+    var t = parseInt(worldmap.css('top'));
+    var l = parseInt(worldmap.css('left'));
+
     for (i=0; i<Scope.Quests.length; i++) {
         if (Scope.Quests[i].status == 1) {
             for (j=0; j<Scope.Quests[i].map.length; j++) {
@@ -27,11 +28,7 @@ var showExcl = function(t, l) {
                     $('ul[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
                                             .css('top',  (m.y + t + 14) + 'px');
                 }
-				if (id[3] != mapIdx) {
-					$('img[name=' + id + ']').hide();
-					$('ul[name=' + id + ']').hide();
-				}
-				else {
+				if (id[3] == mapIdx) {
 					$('img[name=' + id + ']').show();
 					$('ul[name=' + id + ']').show();
 				}
@@ -52,7 +49,7 @@ var handleMove = function(x, y) {
 		//l = Math.min(l, mapDims[idx][1]*mapTileSize);
         worldmap.css('top', t + 'px');
         worldmap.css('left', l + 'px');
-        showExcl(t, l);
+        showExcl();
     }
 }
 
@@ -81,10 +78,10 @@ var displayMap = function(idx) {
 
 $('body').ready( function(e) {
     isMapDragged = false;
-    $('#worldmap-victoria').css('top', -(mapDims[0][0]/2.5 * mapTileSize) + 'px');
-    $('#worldmap-victoria').css('left', -(mapDims[0][1]/4 * mapTileSize) + 'px');
-    $('#worldmap-karkar').css('top', -(mapDims[1][0]/4 * mapTileSize) + 'px');
-    $('#worldmap-karkar').css('left', -(mapDims[1][1]/4 * mapTileSize) + 'px');
+    $('#worldmap-victoria').css('top', -(mapDims[0][0]/3 * mapTileSize) + 'px');
+    $('#worldmap-victoria').css('left', -(mapDims[0][1]/3.5 * mapTileSize) + 'px');
+    $('#worldmap-karkar').css('top', -(mapTileSize) + 'px');
+    $('#worldmap-karkar').css('left', -(mapTileSize) + 'px');
 	displayMap(0);
 });
 
@@ -145,7 +142,7 @@ var handleToggle = function() {
 	mapIdx %= mapTypes.length;
 	displayMap(mapIdx);
 	var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
-	showExcl(worldmap.css('top'), worldmap.css('left'));
+	showExcl();
 }
 $('#worldmap-toggle').on('touchend', function(e) {
 	handleToggle();
