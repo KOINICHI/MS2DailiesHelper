@@ -194,7 +194,7 @@ a:hover {
     vertical-align: top;
     overflow: hidden;
     width: 60%;
-    height: calc(100% - 120px);
+    height: calc(100% - 110px);
     margin: 10px;
     background: url('./bg_map_ptn.jpg');
     background-repeat: repeat;
