@@ -3,7 +3,7 @@
 <script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./angular.min.js"></script>
 <script type="text/javascript" src="./cookies.js"></script>
-<script type="text/javascript" src="./js.js?24"></script>
+<script type="text/javascript" src="./js.js?25"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 관리미 </title>
 
@@ -38,12 +38,14 @@
     <div id="my-quest-wrap">
         <ul class='my-quest'>
             <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | myquestFilter | listFilter:filtertext)" ng-click="clearQuest($event)">
-                <span name="{{x.id}}">{{x.desc}}</span>
+                <span name="{{x.id}}" class="my-quest-list-item-desc">{{x.desc}}</span>
+                <span name="{{x.id}}_map" class="my-quest-list-item-map" ng-mouseenter="showMapList($event)" ng-mouseleave="hideMapList($event)">🚁</span>
             </li>
         </ul>
         <ul class='my-quest'>
             <li name="{{x.id}}" class='my-quest-list-item {{Status[x.status]}}' ng-repeat="x in (Quests | notstartedFilter | listFilter:filtertext)" ng-click="startQuest($event)">
-                <span name="{{x.id}}">{{x.desc}}</span>
+                <span name="{{x.id}}" class="my-quest-list-item-desc">{{x.desc}}</span>
+                <span name="{{x.id}}_map" class="my-quest-list-item-map" ng-mouseenter="showMapList($event)" ng-mouseleave="hideMapList($event)">🚁</span>
             </li>
         </ul>
     </div>
@@ -54,6 +56,7 @@
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미</span> <br />
             <br />
+            <b>2016/3/9 : 맵 이름 리스트 보기</b><br />
             <b>2016/2/17 : 레이아웃 변경. 건의 받습니다.</b><br />
             <b>2016/2/14 : 카르카르 일퀘 추가, 맵 이미지 변경</b><br />
             <br />
