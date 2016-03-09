@@ -88,6 +88,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	}
 	
 	$scope.startQuest = function(e) {
+		e.stopPropagation();
 		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
@@ -101,6 +102,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 		}
 	};
 	$scope.clearQuest = function(e) {
+		e.stopPropagation();
 		var id = parseInt(e.target.attributes['name'].value)
 		for (i=0; i<$scope.Quests.length; i++) {
 			if ($scope.Quests[i].id == id) {
@@ -152,6 +154,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
     };
 	
 	$scope.showMapList = function(e) {
+		e.stopPropagation();
 		$('#my-quest-map-list').remove();
 		var id = parseInt(e.target.attributes['name'].value);
 		var $mapList = $('<ul id="my-quest-map-list">');
@@ -169,6 +172,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	}
 	
 	$scope.hideMapList = function(e) {
+		e.stopPropagation();
 		$('#my-quest-map-list').remove();
 	}
 }]);

@@ -203,9 +203,11 @@ a:hover {
     color: rgba(0,144,144,1);
 }
 .cleared {
+    border-bottom: #999999 2px solid;
+}
+.cleared  > .my-quest-list-item-desc {
     color: #000000;
     text-decoration: line-through;
-    border-bottom: #999999 2px solid;
 }
 .cleared:hover {
     border-color: #777777;
