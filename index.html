@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./angular.min.js"></script>
 <script type="text/javascript" src="./cookies.js"></script>
 <script type="text/javascript" src="./js.js?25"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
-<title> 메이플스토리2 일퀘 관리미 </title>
+<title> 메이플스토리2 일퀘 도우미 </title>
 
 <body ng-app="ArikkariHelper" ng-controller="ArikkariHelperCtrl" ng-keydown="keydownHandler($event)" data-ng-init="init()">
 <div class='my-quest-control'>
@@ -54,8 +54,9 @@
 <div ng-show="currentScreen" class='popup-wrap' ng-click="currentScreen = 0;">
         <div ng-show="currentScreen == 2" class='popup home' ng-click="$event.stopPropagation();">
         <p style="min-width:90%; margin: 0px auto;">
-            <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 관리미</span> <br />
+            <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 도우미</span> <br />
             <br />
+            <b>2016/4/15 : 관리미에서 도우미로 이름 변경</b><br />
             <b>2016/4/2 : 길라잡이 일퀘 빠진 것 추가</b><br />
             <b>2016/3/9 : 맵 이름 리스트 보기</b><br />
             <br />
