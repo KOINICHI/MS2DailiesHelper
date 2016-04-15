@@ -10,7 +10,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	$scope.Quests = [];
 	$scope.Maps = [];
 
-    $scope.mapShown = true;
+	$scope.mapShown = true;
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (map_res) {
 		$scope.Maps = map_res;
 		for (var map in $scope.Maps) {
@@ -20,6 +20,7 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 			$scope.Quests = quest_res;
 			for (i=0; i<$scope.Quests.length; i++) {
 				var status = getCookie($scope.Quests[i].id);
+                $scope.Quests[i].status = 0;
 				if (status == 0 || status == 'notstarted') { $scope.Quests[i].status = 0; }
 				if (status == 1 || status == 'ongoing') {
 					$scope.Quests[i].status = 1;
