@@ -24,12 +24,15 @@
 </div>
 <div id='main'>
     <div id="worldmap-wrap" style="padding: 0px" ng-click="$event.stopPropagation();">
-        <div id="worldmap-toggle">
-            빅토리아 아일랜드
-        </div>
-        <div id="worldmap-victoria"> </div>
-        <div id="worldmap-karkar"> </div>
-        <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" style="display:none;" hovertoshow render-excl />
+        <ul id="worldmap-toggle">
+            <li selected>빅토리아 아일랜드</span>
+            <li>다크니스 아일랜드</span>
+            <li>카르카르 아일랜드</span>
+        </ul>
+        <div id="worldmap-victoria"></div>
+        <div id="worldmap-darkness"><span style="color: white; font-size: 20pt; width: 200px; text-align: center; margin: 300px auto; display:block">주...준비중!!</span></div>
+        <div id="worldmap-karkar"></div>
+        <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" style="display: none" hovertoshow render-excl />
         <ul name='{{x}}' class='worldmap-quest-list' ng-repeat="x in (Quests | ongoingMapFilter)">
             <span class='worldmap-quest-list-title'>{{Maps[x].name}}</span>
             <li class='worldmap-quest-list-item' ng-repeat="y in Maps[x].quests">{{y}}</li>

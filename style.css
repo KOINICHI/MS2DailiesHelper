@@ -251,16 +251,27 @@ a:hover {
     display: inline;
     z-index: 100;
     position: absolute;
-    padding: 10px;
+    padding: 0px;
     background: rgba(0, 0, 0, 0.5);
     color: rgb(255, 255, 255);
     border: #333333 2px solid;
-    border-radius:50px;
     top: 30px;
     right: 30px;
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
     cursor: pointer;
+    text-align: center;
 }
-#worldmap-victoria, #worldmap-karkar {
+#worldmap-toggle > li {
+    width: 150px;
+    height: 30px;
+    padding-top: 5px;
+}
+#worldmap-toggle > li:hover {
+    background: rgba(0,0,0,0.8);
+}
+#worldmap-victoria, #worldmap-karkar, #worldmap-darkness {
     position: relative;
 }
 
