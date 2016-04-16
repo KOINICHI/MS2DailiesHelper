@@ -3,7 +3,7 @@
 <script type="text/javascript" src="./jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="./angular.min.js"></script>
 <script type="text/javascript" src="./cookies.js"></script>
-<script type="text/javascript" src="./js.js?25"></script>
+<script type="text/javascript" src="./js.js?26"></script>
 <link rel="stylesheet" href="./style.css" type="text/css" media="screen" />
 <title> 메이플스토리2 일퀘 도우미 </title>
 
@@ -24,12 +24,15 @@
 </div>
 <div id='main'>
     <div id="worldmap-wrap" style="padding: 0px" ng-click="$event.stopPropagation();">
-        <div id="worldmap-toggle">
-            빅토리아 아일랜드
-        </div>
-        <div id="worldmap-victoria"> </div>
-        <div id="worldmap-karkar"> </div>
-        <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" style="display:none;" hovertoshow render-excl />
+        <ul id="worldmap-toggle">
+            <li selected>빅토리아 아일랜드</span>
+            <li>다크니스 아일랜드</span>
+            <li>카르카르 아일랜드</span>
+        </ul>
+        <div id="worldmap-victoria"></div>
+        <div id="worldmap-darkness"><span style="color: white; font-size: 20pt; width: 200px; text-align: center; margin: 300px auto; display:block">주...준비중!!</span></div>
+        <div id="worldmap-karkar"></div>
+        <img name='{{x}}' class='worldmap-quest-excl' src='./excl.png' ng-repeat="x in (Quests | ongoingMapFilter)" style="display: none" hovertoshow render-excl />
         <ul name='{{x}}' class='worldmap-quest-list' ng-repeat="x in (Quests | ongoingMapFilter)">
             <span class='worldmap-quest-list-title'>{{Maps[x].name}}</span>
             <li class='worldmap-quest-list-item' ng-repeat="y in Maps[x].quests">{{y}}</li>
@@ -56,6 +59,7 @@
         <p style="min-width:90%; margin: 0px auto;">
             <span style="font-size:16pt; font-weight:bold">메이플스토리2 일퀘 도우미</span> <br />
             <br />
+            <b>2016/4/16 : 다른 대륙 느낌표 보이는 버그 수정 및 여러 눈에 띄지 않을지도 모르는 뭐라 설명해야할지 모르겠는 변경들...</b><br />
             <b>2016/4/15 : 관리미에서 도우미로 이름 변경</b><br />
             <b>2016/4/2 : 길라잡이 일퀘 빠진 것 추가</b><br />
             <b>2016/3/9 : 맵 이름 리스트 보기</b><br />
@@ -87,7 +91,7 @@
 
 </body>
 
-<script type="text/javascript" src="./worldmap.js?8"></script>
+<script type="text/javascript" src="./worldmap.js?9"></script>
 
 </html>
 

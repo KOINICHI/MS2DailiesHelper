@@ -1,25 +1,27 @@
 var Main = angular.module('ArikkariHelper', []);
 
 Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http) {
-	$scope.QuestNPC = ['알리야르','마요르','고다르'];
-	$scope.QuestCategory = ['전투', '생활', '모험'];
 	$scope.Status = {0:'notstarted', 1:'ongoing', 2:'cleared'};
-	
-	$scope.Postfixes = ['형 몬스터 처치하기', ' 처치하기', ' 클리어하기', ' 몬스터 공격하기', '', '', ' 구해오기', '', '', ' 입장하기'];	
 	
 	$scope.Quests = [];
 	$scope.Maps = [];
 
-    $scope.mapShown = true;
+	$scope.mapShown = true;
 	$http.get('http://koinichi.github.io/MS2DailiesHelper/maps.json').success( function (map_res) {
 		$scope.Maps = map_res;
 		for (var map in $scope.Maps) {
 			$scope.Maps[map].quests = [];
+            if (map[1] == '2') {
+                if (map[3] == '0') { $scope.Maps[map].cont = 0; } // victoria island
+                if (map[3] == '1') { $scope.Maps[map].cont = 2; } // karkar island
+            }
+            if (map[1] == '3') { $scope.Maps[map].cont = 1; } // darkness island
 		}
 		$http.get('http://koinichi.github.io/MS2DailiesHelper/quests.json').success( function (quest_res) {
 			$scope.Quests = quest_res;
 			for (i=0; i<$scope.Quests.length; i++) {
 				var status = getCookie($scope.Quests[i].id);
+                $scope.Quests[i].status = 0;
 				if (status == 0 || status == 'notstarted') { $scope.Quests[i].status = 0; }
 				if (status == 1 || status == 'ongoing') {
 					$scope.Quests[i].status = 1;
@@ -45,9 +47,9 @@ Main.controller('ArikkariHelperCtrl', ['$scope', '$http', function($scope, $http
 	});
 	
 	$scope.init = function () {
-		if (getCookie('visited') < 9) {
+		if (getCookie('visited') < 10) {
 			$scope.currentScreen = 2;
-			setCookie('visited', '9', 365);
+			setCookie('visited', '10', 365);
 		}
         else {
 			$scope.currentScreen = 0;

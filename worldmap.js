@@ -1,17 +1,16 @@
-
-var mapIdx = 0;
-var mapTypes = ['victoria', 'karkar'];
-var mapNames = ['빅토리아 아일랜드', '카르카르 아일랜드'];
-var mapDisplayed = [false, false];
+var curCont = 0;
+var conts = ['victoria', 'darkness', 'karkar'];
+var contNames = ['빅토리아 아일랜드', '다크니스 아일랜드', '카르카르 아일랜드'];
+var contLoaded = [false, false, false];
 var mapTileSize = 256;
-var mapDims = [[11,16],[5,5]]
+var mapDims = [[11,16],[0,0],[5,5]]
 var isMapDragged = false;
 var startX, startY;
 
 var showExcl = function() {
     var Scope = angular.element('[ng-controller=ArikkariHelperCtrl]').scope();       
     var Maps = {};
-    var worldmap = $("#worldmap-" + mapTypes[mapIdx]);
+    var worldmap = $("#worldmap-" + conts[curCont]);
 
     var t = parseInt(worldmap.css('top'));
     var l = parseInt(worldmap.css('left'));
@@ -23,15 +22,18 @@ var showExcl = function() {
                 var m = Scope.Maps[id];
                 if (Maps[id] == undefined) {
                     Maps[id] = 1;
-                    $('img[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
-                                             .css('top',  (m.y + t - 14) + 'px');
-                    $('ul[name=' + id + ']').css('left', (m.x + l - 9) + 'px')
-                                            .css('top',  (m.y + t + 14) + 'px');
+                    var img = $('img[name=' + id + ']');
+                    var ul = $('ul[name=' + id + ']');
+                    if (m.cont != curCont) {
+                        img.hide();
+                        continue;
+                    }
+                    img.css('left', (m.x + l - 9) + 'px')
+                       .css('top',  (m.y + t - 14) + 'px')
+                       .show();
+                    ul.css('left', (m.x + l - 9) + 'px')
+                      .css('top',  (m.y + t + 14) + 'px');
                 }
-				if (id[3] == mapIdx) {
-					$('img[name=' + id + ']').show();
-					$('ul[name=' + id + ']').show();
-				}
             }
         }
     }
@@ -39,26 +41,24 @@ var showExcl = function() {
 
 var handleMove = function(x, y) {
     if (isMapDragged) {
-        var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
+        var worldmap = $('#worldmap-' + conts[curCont]);
 
         var t = y-startY;
         t = Math.min(t, 0);
-		//t = Math.min(t, mapDims[idx][0]*mapTileSize);
         var l = x-startX;
         l = Math.min(l, 0);
-		//l = Math.min(l, mapDims[idx][1]*mapTileSize);
         worldmap.css('top', t + 'px');
         worldmap.css('left', l + 'px');
         showExcl();
     }
 }
 
-var displayMap = function(idx) {
-	mapIdx = idx;
-	var type = mapTypes[idx];
+var showCont = function(idx) {
+	curCont = idx;
+	var type = conts[idx];
 	var worldmap = $('#worldmap-' + type);
-	if (!mapDisplayed[idx]) {
-		mapDisplayed[idx] = true;
+	if (!contLoaded[idx]) {
+		contLoaded[idx] = true;
 		var dimX = mapDims[idx][0];
 		var dimY = mapDims[idx][1];
 		for (var i=0; i<dimX; i++) {
@@ -69,11 +69,12 @@ var displayMap = function(idx) {
 			}
 		}
 	}
-	for (var i=0; i<mapTypes.length; i++) {
-		$('#worldmap-' + mapTypes[i]).hide();
+	for (var i=0; i<conts.length; i++) {
+		$('#worldmap-' + conts[i]).hide();
 	}
-	$('#worldmap-toggle').text(mapNames[idx]);
+	$('#worldmap-' +  + conts[idx]).text(contNames[idx]);
 	worldmap.show();
+    showExcl();
 }
 
 $('body').ready( function(e) {
@@ -82,7 +83,7 @@ $('body').ready( function(e) {
     $('#worldmap-victoria').css('left', -(mapDims[0][1]/3.5 * mapTileSize) + 'px');
     $('#worldmap-karkar').css('top', -(mapTileSize) + 'px');
     $('#worldmap-karkar').css('left', -(mapTileSize) + 'px');
-	displayMap(0);
+	showCont(0);
 });
 
 
@@ -95,7 +96,7 @@ $('#worldmap-wrap').mouseup( function(e) {
 $('#worldmap-wrap').mousedown( function(e) {
     e.preventDefault();
     isMapDragged = true;
-    var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
+    var worldmap = $('#worldmap-' + conts[curCont]);
     var offsetX = parseInt(worldmap.css('left'));
     var offsetY = parseInt(worldmap.css('top'));
     startX = e.pageX - offsetX;
@@ -117,7 +118,7 @@ $('#worldmap-wrap').mousemove( function(e) {
 $('#worldmap-wrap').on('touchstart', function(e) {
     e.preventDefault();
     isMapDragged = true;
-    var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
+    var worldmap = $('#worldmap-' + conts[curCont]);
     var offsetX = parseInt(worldmap.css('left'));
     var offsetY = parseInt(worldmap.css('top'));
     var pos = e.originalEvent.touches[0];
@@ -137,16 +138,31 @@ $('#worldmap-wrap').on('touchend', function(e) {
 });
 
 
-var handleToggle = function() {
-	mapIdx += 1;
-	mapIdx %= mapTypes.length;
-	displayMap(mapIdx);
-	var worldmap = $('#worldmap-' + mapTypes[mapIdx]);
-	showExcl();
-}
-$('#worldmap-toggle').on('touchend', function(e) {
-	handleToggle();
+
+$('#worldmap-toggle').on('mouseenter', function(e) {
+    $(this).css('height', '100px');
+    $(this).children().each(function() {
+        $(this).show();
+    });
 });
-$('#worldmap-toggle').on('click', function(e) {
-	handleToggle();
+$('#worldmap-toggle').on('mouseleave', function(e) {
+    $(this).css('height', '30px');
+    $(this).children().each(function() {
+        if ($(this).is('[selected]')) {
+            $(this).show();
+        }
+        else {
+            $(this).hide();
+        }
+    });
+});
+$('#worldmap-toggle > li').on('click', function(e) {
+    $(this).siblings().each(function() {
+        $(this).removeAttr('selected');
+        $(this).hide();
+    });
+    $(this).attr('selected', '');
+    $(this).show();
+    $(this).parent().css('height', '30px');
+    showCont($(this).index());
 });
