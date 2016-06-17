@@ -6,6 +6,7 @@ var mapTileSize = 256;
 var mapDims = [[12,16],[9,15],[5,5]]
 var isMapDragged = false;
 var startX, startY;
+var baseurl = "http://koinichi.github.io/MS2DailiesHelper/";
 
 var showExcl = function() {
     var Scope = angular.element('[ng-controller=ArikkariHelperCtrl]').scope();       
@@ -63,7 +64,7 @@ var showCont = function(idx) {
 		var dimY = mapDims[idx][1];
 		for (var i=0; i<dimX; i++) {
 			for (var j=0; j<dimY; j++) {
-				var img = '<img src="./' + type + '/' + i + ' ' + j + '.png"' +
+				var img = '<img src="http://koinichi.github.io/MS2DailiesHelper/' + type + '/' + i + ' ' + j + '.png"' +
 							'style="position: absolute; top:' + i*mapTileSize + 'px; left:' + j*mapTileSize + 'px" />';
 				worldmap.append(img);
 			}
@@ -72,7 +73,6 @@ var showCont = function(idx) {
 	for (var i=0; i<conts.length; i++) {
 		$('#worldmap-' + conts[i]).hide();
 	}
-	$('#worldmap-' +  + conts[idx]).text(contNames[idx]);
 	worldmap.show();
     showExcl();
 }
@@ -81,6 +81,8 @@ $('body').ready( function(e) {
     isMapDragged = false;
     $('#worldmap-victoria').css('top', -(mapDims[0][0]/3 * mapTileSize) + 'px');
     $('#worldmap-victoria').css('left', -(mapDims[0][1]/3.5 * mapTileSize) + 'px');
+    $('#worldmap-darkness').css('top', -(mapDims[1][0]/3 * mapTileSize) + 'px');
+    $('#worldmap-darkness').css('left', -(mapDims[1][1]/6 * mapTileSize) + 'px');
     $('#worldmap-karkar').css('top', -(mapTileSize) + 'px');
     $('#worldmap-karkar').css('left', -(mapTileSize) + 'px');
 	showCont(0);
