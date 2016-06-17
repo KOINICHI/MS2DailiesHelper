@@ -3,7 +3,7 @@ var conts = ['victoria', 'darkness', 'karkar'];
 var contNames = ['빅토리아 아일랜드', '다크니스 아일랜드', '카르카르 아일랜드'];
 var contLoaded = [false, false, false];
 var mapTileSize = 256;
-var mapDims = [[11,16],[0,0],[5,5]]
+var mapDims = [[12,16],[9,15],[5,5]]
 var isMapDragged = false;
 var startX, startY;
 
