@@ -6,7 +6,7 @@ var mapTileSize = 256;
 var mapDims = [[12,16],[9,15],[5,5]]
 var isMapDragged = false;
 var startX, startY;
-var baseurl = "http://koinichi.github.io/MS2DailiesHelper/";
+var baseurl = "https://koinichi.github.io/MS2DailiesHelper";
 
 var showExcl = function() {
     var Scope = angular.element('[ng-controller=ArikkariHelperCtrl]').scope();       
@@ -64,7 +64,7 @@ var showCont = function(idx) {
 		var dimY = mapDims[idx][1];
 		for (var i=0; i<dimX; i++) {
 			for (var j=0; j<dimY; j++) {
-				var img = '<img src="http://koinichi.github.io/MS2DailiesHelper/' + type + '/' + i + ' ' + j + '.png"' +
+				var img = '<img src="' + baseurl + '/' + type + '/' + i + ' ' + j + '.png"' +
 							'style="position: absolute; top:' + i*mapTileSize + 'px; left:' + j*mapTileSize + 'px" />';
 				worldmap.append(img);
 			}
